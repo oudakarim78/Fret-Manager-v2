@@ -1,0 +1,3122 @@
+{
+  "workspaces": [
+    {
+      "id": "ws_demo",
+      "code": "DEMO",
+      "name": "Atlas Fret Maroc",
+      "created_at": "2026-11-19T13:08:35.187Z",
+      "b2b_license": {
+        "pack": "demo_gratuit",
+        "status": "essai_gratuit",
+        "setup_fee": 0,
+        "annual_fee": 0,
+        "currency": "MAD",
+        "max_vehicles": 25,
+        "max_users": 25,
+        "gps_enabled": true,
+        "valid_until": "2026-12-03",
+        "onboarding_checklist": [
+          {
+            "id": "chk_company",
+            "label": "Paramétrage raison sociale, ICE, RIB et logo facture",
+            "done": true
+          },
+          {
+            "id": "chk_fleet",
+            "label": "Import du parc véhicules et dossiers conducteurs",
+            "done": true
+          },
+          {
+            "id": "chk_clients",
+            "label": "Import du répertoire clients et catalogues villes",
+            "done": true
+          },
+          {
+            "id": "chk_training",
+            "label": "Session de formation prise en main (Admin, Logistique, Conducteurs)",
+            "done": false
+          },
+          {
+            "id": "chk_prod",
+            "label": "Validation mise en production et premier cycle de facturation",
+            "done": false
+          }
+        ],
+        "notes": "Espace de démonstration ouvert pour présentation commerciale B2B."
+      },
+      "users": [
+        {
+          "id": "usr_admin_demo",
+          "workspace_id": "ws_demo",
+          "email": "admin@fretmanager.ma",
+          "password_hash": "0967f24d65f85331eb33a5d0558819c5:6a2836a0b07d4db6d5caa237355a1038e06d2dd0ea250045b037f635ead1237d7acf24da45ead25420d90665ab55ef5a2d566984bb5e7e36eb5cf36fab02198e",
+          "full_name": "Nadia Benali",
+          "role": "admin",
+          "driver_id": null,
+          "active": true,
+          "created_at": "2026-11-09T13:08:35.292Z"
+        },
+        {
+          "id": "usr_logistique_demo",
+          "workspace_id": "ws_demo",
+          "email": "logistique@fretmanager.ma",
+          "password_hash": "c75690a2c2af098dbc47eb908380382c:8a01ef5dbc40d3160f54130af28f0b24cda397108de95dd23d1e0ddf0b457eab6f246e4b96c922dd30288444277a502d9aaa93aa5140397d44e98898e95782f1",
+          "full_name": "Omar Tazi",
+          "role": "logistique",
+          "driver_id": null,
+          "active": true,
+          "created_at": "2026-11-11T05:08:35.377Z"
+        },
+        {
+          "id": "usr_comptable_demo",
+          "workspace_id": "ws_demo",
+          "email": "compta@fretmanager.ma",
+          "password_hash": "1d005d988ea24ab2ed958364bb2cb06d:b9d12c587433b4b12e81f0b6fd222efa6b1fc3696b03e06e6c77dba9974f6cbe62d47167f0b9066b6f3290cdb0d34461c6e6b6271875bd75eed5288bc51e67eb",
+          "full_name": "Salma El Idrissi",
+          "role": "comptable",
+          "driver_id": null,
+          "active": true,
+          "created_at": "2026-11-12T01:08:35.445Z"
+        },
+        {
+          "id": "usr_driver_demo",
+          "workspace_id": "ws_demo",
+          "email": "conducteur@fretmanager.ma",
+          "password_hash": "08fed5e8de7328acb59bb8d35dfa57e1:f15db75394cead5592b19eb0dcdc0cb3d8e2f5ff37fab5520f7e81e6c7618a5d6756679b098266baa33257d4aedd1406f765fd63a3e060573b16cdda35a56e33",
+          "full_name": "Karim Mansouri",
+          "role": "conducteur",
+          "driver_id": "drv_karim",
+          "active": true,
+          "created_at": "2026-11-12T21:08:35.504Z"
+        }
+      ],
+      "vehicles": [
+        {
+          "id": "veh_fh16",
+          "registration": "14820-A-26",
+          "vehicle_type": "Tracteur routier 40T",
+          "brand": "Volvo",
+          "model": "FH16 540",
+          "year": 2023,
+          "status": "actif",
+          "created_at": "2026-10-29T17:08:35.504Z"
+        },
+        {
+          "id": "veh_actros",
+          "registration": "89214-B-1",
+          "vehicle_type": "Semi-remorque frigorifique",
+          "brand": "Mercedes-Benz",
+          "model": "Actros 1848",
+          "year": 2022,
+          "status": "actif",
+          "created_at": "2026-10-30T13:08:35.504Z"
+        },
+        {
+          "id": "veh_renault",
+          "registration": "45019-D-40",
+          "vehicle_type": "Porteur bâché 19T",
+          "brand": "Renault Trucks",
+          "model": "T-High 480",
+          "year": 2021,
+          "status": "actif",
+          "created_at": "2026-11-02T01:08:35.504Z"
+        },
+        {
+          "id": "veh_iveco",
+          "registration": "33108-E-7",
+          "vehicle_type": "Fourgon messagerie",
+          "brand": "Iveco",
+          "model": "S-Way",
+          "year": 2020,
+          "status": "en_maintenance",
+          "created_at": "2026-11-04T13:08:35.504Z"
+        }
+      ],
+      "drivers": [
+        {
+          "id": "drv_karim",
+          "full_name": "Karim Mansouri",
+          "phone": "+212 6 61 42 18 90",
+          "email": "conducteur@fretmanager.ma",
+          "license_number": "EC-884120",
+          "status": "actif",
+          "created_at": "2026-10-31T19:08:35.504Z"
+        },
+        {
+          "id": "drv_youssef",
+          "full_name": "Youssef Berrada",
+          "phone": "+212 6 63 11 54 02",
+          "email": "y.berrada@fretmanager.ma",
+          "license_number": "EC-772940",
+          "status": "actif",
+          "created_at": "2026-11-01T15:08:35.504Z"
+        },
+        {
+          "id": "drv_rachid",
+          "full_name": "Rachid Amrani",
+          "phone": "+212 6 67 89 30 14",
+          "email": "r.amrani@fretmanager.ma",
+          "license_number": "C-510394",
+          "status": "actif",
+          "created_at": "2026-11-02T21:08:35.504Z"
+        }
+      ],
+      "clients": [
+        {
+          "id": "cli_medlog",
+          "company_name": "MedLog Tanger Med SA",
+          "contact_name": "Hicham Chraïbi",
+          "phone": "+212 5 39 94 22 10",
+          "email": "logistique@medlog.ma",
+          "address": "Zone Franche Logistique, Lot 14, Tanger Med",
+          "ice": "001584920000048",
+          "client_type": "Industriel & Conteneurs",
+          "active": true,
+          "created_at": "2026-10-31T19:08:35.504Z"
+        },
+        {
+          "id": "cli_agrisud",
+          "company_name": "AgriSud Primeurs Export",
+          "contact_name": "Khadija Alaoui",
+          "phone": "+212 5 28 24 81 00",
+          "email": "export@agrisud.ma",
+          "address": "Parc Agro-Industriel Ait Melloul, Agadir",
+          "ice": "002193847000019",
+          "client_type": "Agroalimentaire Frigo",
+          "active": true,
+          "created_at": "2026-11-02T11:08:35.504Z"
+        },
+        {
+          "id": "cli_iberia",
+          "company_name": "Iberia Cargo Solutions SL",
+          "contact_name": "Carlos Mendoza",
+          "phone": "+34 91 482 30 11",
+          "email": "dispatch@iberiacargo.es",
+          "address": "Calle de la Logística 42, 28042 Madrid",
+          "ice": "ESB84920144",
+          "client_type": "International Europe",
+          "active": true,
+          "created_at": "2026-11-03T17:08:35.504Z"
+        }
+      ],
+      "countries": [
+        {
+          "id": "cnt_ma",
+          "name": "Maroc",
+          "iso_code": "MA",
+          "is_active": true
+        },
+        {
+          "id": "cnt_fr",
+          "name": "France",
+          "iso_code": "FR",
+          "is_active": true
+        },
+        {
+          "id": "cnt_es",
+          "name": "Espagne",
+          "iso_code": "ES",
+          "is_active": true
+        }
+      ],
+      "cities": [
+        {
+          "id": "cty_casa",
+          "name": "Casablanca",
+          "country_id": "cnt_ma",
+          "is_active": true
+        },
+        {
+          "id": "cty_tanger",
+          "name": "Tanger Med",
+          "country_id": "cnt_ma",
+          "is_active": true
+        },
+        {
+          "id": "cty_agadir",
+          "name": "Agadir",
+          "country_id": "cnt_ma",
+          "is_active": true
+        },
+        {
+          "id": "cty_marrakech",
+          "name": "Marrakech",
+          "country_id": "cnt_ma",
+          "is_active": true
+        },
+        {
+          "id": "cty_fes",
+          "name": "Fès",
+          "country_id": "cnt_ma",
+          "is_active": true
+        },
+        {
+          "id": "cty_marseille",
+          "name": "Marseille",
+          "country_id": "cnt_fr",
+          "is_active": true
+        },
+        {
+          "id": "cty_madrid",
+          "name": "Madrid",
+          "country_id": "cnt_es",
+          "is_active": true
+        }
+      ],
+      "trips": [
+        {
+          "id": "trp_001",
+          "reference": "MS-2026-041",
+          "client_id": "cli_medlog",
+          "vehicle_id": "veh_fh16",
+          "driver_id": "drv_karim",
+          "departure": "Casablanca",
+          "destination": "Tanger Med",
+          "departure_city_id": "cty_casa",
+          "destination_city_id": "cty_tanger",
+          "departure_date": "2026-11-17",
+          "arrival_date": "2026-11-20",
+          "status": "En cours",
+          "revenue": 14500,
+          "currency": "MAD",
+          "driver_response": "accepted",
+          "driver_notes": "Chargement scellé quai 4.",
+          "created_by": "usr_admin_demo",
+          "created_at": "2026-11-16T13:08:35.504Z"
+        },
+        {
+          "id": "trp_002",
+          "reference": "MS-2026-042",
+          "client_id": "cli_agrisud",
+          "vehicle_id": "veh_actros",
+          "driver_id": "drv_youssef",
+          "departure": "Agadir",
+          "destination": "Madrid",
+          "departure_city_id": "cty_agadir",
+          "destination_city_id": "cty_madrid",
+          "departure_date": "2026-11-18",
+          "arrival_date": "2026-11-21",
+          "status": "En cours",
+          "revenue": 3400,
+          "currency": "EUR",
+          "driver_response": "accepted",
+          "driver_notes": "Température dirigée +4°C vérifiée.",
+          "created_by": "usr_logistique_demo",
+          "created_at": "2026-11-17T13:08:35.504Z"
+        },
+        {
+          "id": "trp_003",
+          "reference": "MS-2026-043",
+          "client_id": "cli_medlog",
+          "vehicle_id": "veh_renault",
+          "driver_id": "drv_karim",
+          "departure": "Tanger Med",
+          "destination": "Fès",
+          "departure_city_id": "cty_tanger",
+          "destination_city_id": "cty_fes",
+          "departure_date": "2026-11-21",
+          "arrival_date": "2026-11-22",
+          "status": "À planifier",
+          "revenue": 8200,
+          "currency": "MAD",
+          "driver_response": "pending",
+          "driver_notes": null,
+          "created_by": "usr_logistique_demo",
+          "created_at": "2026-11-18T13:08:35.504Z"
+        },
+        {
+          "id": "trp_004",
+          "reference": "MS-2026-038",
+          "client_id": "cli_iberia",
+          "vehicle_id": "veh_fh16",
+          "driver_id": "drv_karim",
+          "departure": "Casablanca",
+          "destination": "Marseille",
+          "departure_city_id": "cty_casa",
+          "destination_city_id": "cty_marseille",
+          "departure_date": "2026-11-07",
+          "arrival_date": "2026-11-11",
+          "status": "Terminée",
+          "revenue": 4250,
+          "currency": "EUR",
+          "driver_response": "accepted",
+          "driver_notes": "BL signé par le destinataire.",
+          "created_by": "usr_admin_demo",
+          "created_at": "2026-11-07T13:08:35.504Z"
+        },
+        {
+          "id": "trp_005",
+          "reference": "MS-2026-044",
+          "client_id": "cli_agrisud",
+          "vehicle_id": null,
+          "driver_id": "drv_rachid",
+          "departure": "Marrakech",
+          "destination": "Casablanca",
+          "departure_city_id": "cty_marrakech",
+          "destination_city_id": "cty_casa",
+          "departure_date": "2026-11-16",
+          "arrival_date": "2026-11-18",
+          "status": "À planifier",
+          "revenue": 6400,
+          "currency": "MAD",
+          "driver_response": "pending",
+          "driver_notes": null,
+          "created_by": "usr_logistique_demo",
+          "created_at": "2026-11-15T13:08:35.504Z"
+        }
+      ],
+      "expenses": [
+        {
+          "id": "exp_1",
+          "trip_id": "trp_001",
+          "expense_type": "Carburant gasoil",
+          "amount": 3250,
+          "currency": "MAD",
+          "expense_date": "2026-11-17",
+          "description": "Plein station Afriquia autoroute Rabat",
+          "created_by": "usr_comptable_demo",
+          "created_at": "2026-11-17T21:08:35.504Z"
+        },
+        {
+          "id": "exp_2",
+          "trip_id": "trp_001",
+          "expense_type": "Péage autoroute",
+          "amount": 420,
+          "currency": "MAD",
+          "expense_date": "2026-11-18",
+          "description": "Badge Jawaz Casablanca - Tanger",
+          "created_by": "usr_comptable_demo",
+          "created_at": "2026-11-18T07:08:35.504Z"
+        },
+        {
+          "id": "exp_3",
+          "trip_id": "trp_002",
+          "expense_type": "Ferry & Passage portuaire",
+          "amount": 680,
+          "currency": "EUR",
+          "expense_date": "2026-11-18",
+          "description": "Traversée Tanger Med - Algésiras",
+          "created_by": "usr_comptable_demo",
+          "created_at": "2026-11-18T17:08:35.504Z"
+        },
+        {
+          "id": "exp_4",
+          "trip_id": "trp_004",
+          "expense_type": "Carburant & péages Europe",
+          "amount": 1120,
+          "currency": "EUR",
+          "expense_date": "2026-11-09",
+          "description": "Gasoil Espagne / France + autoroute A7",
+          "created_by": "usr_comptable_demo",
+          "created_at": "2026-11-09T13:08:35.504Z"
+        }
+      ],
+      "maintenance": [
+        {
+          "id": "mnt_1",
+          "vehicle_id": "veh_iveco",
+          "maintenance_type": "Révision freinage & pneumatiques",
+          "description": "Remplacement plaquettes avant et équilibrage train arrière.",
+          "maintenance_date": "2026-11-16",
+          "cost": 6850,
+          "currency": "MAD",
+          "next_maintenance_date": "2027-02-17",
+          "created_at": "2026-11-16T13:08:35.505Z"
+        },
+        {
+          "id": "mnt_2",
+          "vehicle_id": "veh_fh16",
+          "maintenance_type": "Vidange complète + filtres",
+          "description": "Huile 10W40 synthétique, filtre gasoil et filtre à air.",
+          "maintenance_date": "2026-10-30",
+          "cost": 4200,
+          "currency": "MAD",
+          "next_maintenance_date": "2026-12-29",
+          "created_at": "2026-10-30T13:08:35.505Z"
+        }
+      ],
+      "documents": [],
+      "employees": [
+        {
+          "id": "emp_1",
+          "full_name": "Karim Mansouri",
+          "job_title": "Conducteur grand routier",
+          "phone": "+212 6 61 42 18 90",
+          "email": "conducteur@fretmanager.ma",
+          "hire_date": "2022-03-01",
+          "end_date": null,
+          "status": "actif",
+          "driver_id": "drv_karim",
+          "notes": "Permis EC + ADR.",
+          "created_by": "usr_admin_demo",
+          "created_at": "2026-10-29T17:08:35.505Z"
+        },
+        {
+          "id": "emp_2",
+          "full_name": "Youssef Berrada",
+          "job_title": "Conducteur international frigo",
+          "phone": "+212 6 63 11 54 02",
+          "email": "y.berrada@fretmanager.ma",
+          "hire_date": "2023-01-15",
+          "end_date": null,
+          "status": "actif",
+          "driver_id": "drv_youssef",
+          "notes": "Ligne Maroc - Espagne.",
+          "created_by": "usr_admin_demo",
+          "created_at": "2026-10-31T19:08:35.505Z"
+        },
+        {
+          "id": "emp_3",
+          "full_name": "Omar Tazi",
+          "job_title": "Responsable exploitation logistique",
+          "phone": "+212 6 60 19 88 33",
+          "email": "logistique@fretmanager.ma",
+          "hire_date": "2021-06-01",
+          "end_date": null,
+          "status": "actif",
+          "driver_id": null,
+          "notes": null,
+          "created_by": "usr_admin_demo",
+          "created_at": "2026-10-29T17:08:35.505Z"
+        }
+      ],
+      "payroll": [
+        {
+          "id": "pay_1",
+          "employee_id": "emp_1",
+          "period_start": "2026-10-20",
+          "period_end": "2026-11-18",
+          "salary_amount": 7500,
+          "employer_charges": 1650,
+          "total_cost": 9150,
+          "currency": "MAD",
+          "payment_status": "paye",
+          "payment_date": "2026-11-18",
+          "notes": "Paie mensuelle + prime trajet Tanger Med.",
+          "created_by": "usr_comptable_demo",
+          "created_at": "2026-11-18T01:08:35.505Z"
+        },
+        {
+          "id": "pay_2",
+          "employee_id": "emp_2",
+          "period_start": "2026-10-20",
+          "period_end": "2026-11-18",
+          "salary_amount": 850,
+          "employer_charges": 190,
+          "total_cost": 1040,
+          "currency": "EUR",
+          "payment_status": "partiellement_paye",
+          "payment_date": "2026-11-17",
+          "notes": "Prime internationale EUR.",
+          "created_by": "usr_comptable_demo",
+          "created_at": "2026-11-18T13:08:35.505Z"
+        }
+      ],
+      "payroll_allocations": [
+        {
+          "id": "pal_1",
+          "payroll_id": "pay_1",
+          "trip_id": "trp_001",
+          "amount": 3000,
+          "notes": "Quote-part mission MS-2026-041",
+          "created_by": "usr_comptable_demo",
+          "created_at": "2026-11-18T17:08:35.505Z"
+        },
+        {
+          "id": "pal_2",
+          "payroll_id": "pay_2",
+          "trip_id": "trp_002",
+          "amount": 650,
+          "notes": "Quote-part trajet Agadir - Madrid",
+          "created_by": "usr_comptable_demo",
+          "created_at": "2026-11-18T19:08:35.505Z"
+        }
+      ],
+      "client_proposals": [
+        {
+          "id": "prp_1",
+          "driver_id": "drv_karim",
+          "company_name": "Souss Textile Logistics SARL",
+          "contact_name": "Mounir Bennani",
+          "phone": "+212 6 62 77 10 45",
+          "email": "contact@sousstextile.ma",
+          "address": "Zone Industrielle Tassila, Lot 88, Agadir",
+          "ice": "002948120000073",
+          "status": "en_attente",
+          "admin_notes": null,
+          "reviewed_by": null,
+          "reviewed_at": null,
+          "created_at": "2026-11-19T03:08:35.505Z"
+        }
+      ],
+      "audit_logs": [
+        {
+          "id": "aud_3c988268-a2a",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "DELETE_TRIP",
+          "table_name": "trips",
+          "record_id": "trp_fbc26d81-289",
+          "details": {
+            "reference": "TEST-WA-1795257616300"
+          },
+          "created_at": "2026-11-21T10:40:16.360Z"
+        },
+        {
+          "id": "aud_1a4c4440-6ea",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "DELETE_INVOICE",
+          "table_name": "invoices",
+          "record_id": "inv_33401fae-007",
+          "details": {
+            "invoice_number": "FAC-0004"
+          },
+          "created_at": "2026-11-21T10:40:16.349Z"
+        },
+        {
+          "id": "aud_5f4a2b62-da7",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "SEND_INVOICE_WHATSAPP",
+          "table_name": "invoices",
+          "record_id": "inv_33401fae-007",
+          "details": {
+            "invoice_number": "FAC-0004",
+            "to": "MedLog Tanger Med SA"
+          },
+          "created_at": "2026-11-21T10:40:16.335Z"
+        },
+        {
+          "id": "aud_1848baa0-1d5",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "SEND_INVOICE_WHATSAPP",
+          "table_name": "invoices",
+          "record_id": "inv_33401fae-007",
+          "details": {
+            "invoice_number": "FAC-0004",
+            "to": "+212 6 12 34 56 78"
+          },
+          "created_at": "2026-11-21T10:40:16.326Z"
+        },
+        {
+          "id": "aud_71630d8f-290",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "CREATE_INVOICE",
+          "table_name": "invoices",
+          "record_id": "inv_33401fae-007",
+          "details": {
+            "invoice_number": "FAC-0004",
+            "total_ttc": 1200
+          },
+          "created_at": "2026-11-21T10:40:16.314Z"
+        },
+        {
+          "id": "aud_5b4960eb-eba",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "CREATE_TRIP",
+          "table_name": "trips",
+          "record_id": "trp_fbc26d81-289",
+          "details": {
+            "reference": "TEST-WA-1795257616300"
+          },
+          "created_at": "2026-11-21T10:40:16.306Z"
+        },
+        {
+          "id": "aud_36c7bc24-ff6",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "UPDATE_COMPANY",
+          "table_name": "company_settings",
+          "record_id": "1",
+          "details": {
+            "company_name": "ATLAS FRET MAROC SARL"
+          },
+          "created_at": "2026-11-21T10:40:16.287Z"
+        },
+        {
+          "id": "aud_94692f0f-bef",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "UPDATE_COMPANY",
+          "table_name": "company_settings",
+          "record_id": "1",
+          "details": {
+            "company_name": "ATLAS FRET MAROC SARL"
+          },
+          "created_at": "2026-11-21T10:40:16.275Z"
+        },
+        {
+          "id": "aud_d7deec30-353",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "UPDATE_COMPANY",
+          "table_name": "company_settings",
+          "record_id": "1",
+          "details": {
+            "company_name": "ATLAS FRET MAROC SARL"
+          },
+          "created_at": "2026-11-21T10:40:16.257Z"
+        },
+        {
+          "id": "aud_79444314-77a",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "UPDATE_COMPANY",
+          "table_name": "company_settings",
+          "record_id": "1",
+          "details": {
+            "company_name": "ATLAS FRET MAROC SARL"
+          },
+          "created_at": "2026-11-21T10:40:03.317Z"
+        },
+        {
+          "id": "aud_12ead80f-d2a",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "UPDATE_COMPANY",
+          "table_name": "company_settings",
+          "record_id": "1",
+          "details": {
+            "company_name": "ATLAS FRET MAROC SARL"
+          },
+          "created_at": "2026-11-21T10:40:03.299Z"
+        },
+        {
+          "id": "aud_20e4b4b3-de8",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "DELETE_TRIP",
+          "table_name": "trips",
+          "record_id": "trp_5acac2bf-af3",
+          "details": {
+            "reference": "TEST-EMAIL-TRIP"
+          },
+          "created_at": "2026-11-21T10:24:33.892Z"
+        },
+        {
+          "id": "aud_78166a5e-36f",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "DELETE_INVOICE",
+          "table_name": "invoices",
+          "record_id": "inv_4fb8cec9-267",
+          "details": {
+            "invoice_number": "FAC-0003"
+          },
+          "created_at": "2026-11-21T10:24:33.886Z"
+        },
+        {
+          "id": "aud_abbfdef7-d49",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "SEND_INVOICE_EMAIL",
+          "table_name": "invoices",
+          "record_id": "inv_4fb8cec9-267",
+          "details": {
+            "invoice_number": "FAC-0003",
+            "to": "finance@client-test.ma",
+            "cc": [
+              "compta@transport.ma"
+            ],
+            "mode": "client_handoff"
+          },
+          "created_at": "2026-11-21T10:24:33.873Z"
+        },
+        {
+          "id": "aud_fa804c70-633",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "CREATE_INVOICE",
+          "table_name": "invoices",
+          "record_id": "inv_4fb8cec9-267",
+          "details": {
+            "invoice_number": "FAC-0003",
+            "total_ttc": 2850
+          },
+          "created_at": "2026-11-21T10:24:33.850Z"
+        },
+        {
+          "id": "aud_99f9f3e3-338",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "CREATE_TRIP",
+          "table_name": "trips",
+          "record_id": "trp_5acac2bf-af3",
+          "details": {
+            "reference": "TEST-EMAIL-TRIP"
+          },
+          "created_at": "2026-11-21T10:24:33.841Z"
+        },
+        {
+          "id": "aud_3cb18598-cef",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "DELETE_VEHICLE",
+          "table_name": "vehicles",
+          "record_id": "veh_4526337f-383",
+          "details": {
+            "registration": "TEST-FRIGO-01"
+          },
+          "created_at": "2026-11-21T09:19:42.237Z"
+        },
+        {
+          "id": "aud_ae355797-d1e",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "DELETE_VEHICLE",
+          "table_name": "vehicles",
+          "record_id": "veh_064f0142-318",
+          "details": {
+            "registration": "TEST-TR-02"
+          },
+          "created_at": "2026-11-21T09:19:42.228Z"
+        },
+        {
+          "id": "aud_4aac010d-24c",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "DELETE_VEHICLE",
+          "table_name": "vehicles",
+          "record_id": "veh_928cb44d-44c",
+          "details": {
+            "registration": "TEST-TR-01"
+          },
+          "created_at": "2026-11-21T09:19:42.218Z"
+        },
+        {
+          "id": "aud_eb3240dd-9d8",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "DELETE_TRIP",
+          "table_name": "trips",
+          "record_id": "trp_91a98f0d-b66",
+          "details": {
+            "reference": "TEST-MULTI-01"
+          },
+          "created_at": "2026-11-21T09:19:42.157Z"
+        },
+        {
+          "id": "aud_4890b636-6b8",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "CREATE_TRIP",
+          "table_name": "trips",
+          "record_id": "trp_91a98f0d-b66",
+          "details": {
+            "reference": "TEST-MULTI-01"
+          },
+          "created_at": "2026-11-21T09:19:41.643Z"
+        },
+        {
+          "id": "aud_6d9d5127-ec1",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "CREATE_VEHICLE",
+          "table_name": "vehicles",
+          "record_id": "veh_4526337f-383",
+          "details": {
+            "registration": "TEST-FRIGO-01"
+          },
+          "created_at": "2026-11-21T09:19:41.634Z"
+        },
+        {
+          "id": "aud_0b30e662-010",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "CREATE_VEHICLE",
+          "table_name": "vehicles",
+          "record_id": "veh_064f0142-318",
+          "details": {
+            "registration": "TEST-TR-02"
+          },
+          "created_at": "2026-11-21T09:19:41.627Z"
+        },
+        {
+          "id": "aud_c4267e73-373",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "CREATE_VEHICLE",
+          "table_name": "vehicles",
+          "record_id": "veh_928cb44d-44c",
+          "details": {
+            "registration": "TEST-TR-01"
+          },
+          "created_at": "2026-11-21T09:19:41.498Z"
+        },
+        {
+          "id": "aud_1",
+          "user_id": "usr_admin_demo",
+          "user_name": "Nadia Benali",
+          "action": "VALIDATE_INVOICE",
+          "table_name": "invoices",
+          "record_id": "inv_1",
+          "details": {
+            "invoice_number": "FAC-0001",
+            "total_ttc": 17400,
+            "currency": "MAD"
+          },
+          "created_at": "2026-11-17T11:08:35.505Z"
+        },
+        {
+          "id": "aud_2",
+          "user_id": "usr_driver_demo",
+          "user_name": "Karim Mansouri",
+          "action": "RESPOND_TRIP",
+          "table_name": "trips",
+          "record_id": "trp_001",
+          "details": {
+            "reference": "MS-2026-041",
+            "response": "accepted"
+          },
+          "created_at": "2026-11-17T13:08:35.505Z"
+        }
+      ],
+      "company_settings": {
+        "id": 1,
+        "company_name": "ATLAS FRET MAROC SARL",
+        "activity": "Transport National & International de Marchandises",
+        "phone": "+212 5 22 48 90 10",
+        "email": "facturation@atlasfret.ma",
+        "address": "Bd Chefchaouni, Km 9, Ain Sebaâ",
+        "city": "Casablanca",
+        "ice": "001847291000052",
+        "tax_id": "40291844",
+        "rc": "394812 Casablanca",
+        "tp": "32409811",
+        "bank": "Attijariwafa Bank — Centre Entreprises",
+        "rib": "007 780 0004918200001948 32",
+        "logo_url": "",
+        "payment_terms": "Règlement par virement bancaire à 30 jours date de facture.",
+        "stamp_enabled": true,
+        "stamp_style": "rectangular",
+        "stamp_color": "#17365d",
+        "stamp_signatory_name": "",
+        "stamp_signatory_title": "Direction Générale",
+        "stamp_signature_url": "",
+        "updated_at": "2026-11-21T10:40:16.287Z"
+      },
+      "invoice_settings": {
+        "id": 1,
+        "prefix": "FAC",
+        "separator": "-",
+        "padding_length": 4,
+        "next_number": 5
+      },
+      "invoices": [
+        {
+          "id": "inv_1",
+          "trip_id": "trp_001",
+          "invoice_number": "FAC-0001",
+          "mission_reference": "MS-2026-041",
+          "client_id": "cli_medlog",
+          "client_name": "MedLog Tanger Med SA",
+          "client_ice": "001584920000048",
+          "client_address": "Zone Franche Logistique, Lot 14, Tanger Med",
+          "client_email": "logistique@medlog.ma",
+          "service_description": "Transport Casablanca - Tanger Med · Mission MS-2026-041",
+          "amount_basis": "HT",
+          "entered_amount": 14500,
+          "tax_rate": 14,
+          "subtotal_ht": 14500,
+          "tax_amount": 2030,
+          "total_ttc": 16530,
+          "currency": "MAD",
+          "issue_date": "2026-11-18",
+          "due_date": "2026-12-18",
+          "status": "validated",
+          "notes": "Conteneur 40 pieds · BL N° TM-99142",
+          "created_by": "usr_comptable_demo",
+          "created_at": "2026-11-17T09:08:35.505Z"
+        },
+        {
+          "id": "inv_2",
+          "trip_id": "trp_004",
+          "invoice_number": "FAC-0002",
+          "mission_reference": "MS-2026-038",
+          "client_id": "cli_iberia",
+          "client_name": "Iberia Cargo Solutions SL",
+          "client_ice": "ESB84920144",
+          "client_address": "Calle de la Logística 42, 28042 Madrid",
+          "client_email": "dispatch@iberiacargo.es",
+          "service_description": "Transport International Casablanca - Marseille · Mission MS-2026-038",
+          "amount_basis": "HT",
+          "entered_amount": 4250,
+          "tax_rate": 0,
+          "subtotal_ht": 4250,
+          "tax_amount": 0,
+          "total_ttc": 4250,
+          "currency": "EUR",
+          "issue_date": "2026-11-12",
+          "due_date": "2026-12-12",
+          "status": "validated",
+          "notes": "Transport international exonéré de TVA (Art. 92 CGI).",
+          "created_by": "usr_admin_demo",
+          "created_at": "2026-11-12T13:08:35.505Z"
+        }
+      ],
+      "invoice_payments": [
+        {
+          "id": "paym_1",
+          "invoice_id": "inv_1",
+          "payment_date": "2026-11-19",
+          "amount": 8000,
+          "currency": "MAD",
+          "payment_method": "Virement",
+          "reference": "VIR-2026-881",
+          "notes": "Acompte 50% réceptionné",
+          "created_at": "2026-11-19T01:08:35.505Z"
+        },
+        {
+          "id": "paym_2",
+          "invoice_id": "inv_2",
+          "payment_date": "2026-11-16",
+          "amount": 4250,
+          "currency": "EUR",
+          "payment_method": "Virement",
+          "reference": "SEPA-IB-402",
+          "notes": "Règlement intégral reçu",
+          "created_at": "2026-11-16T13:08:35.505Z"
+        }
+      ],
+      "gps_devices": [
+        {
+          "id": "gdev_1",
+          "vehicle_id": "veh_fh16",
+          "device_name": "Teltonika FMC920 #01",
+          "provider": "AtlasTrack Telemetry",
+          "imei": "352093081140291",
+          "provider_device_id": "AT-14820",
+          "status": "active",
+          "installed_at": "2024-01-12",
+          "last_seen_at": "2026-11-19T13:06:47.505Z",
+          "created_at": "2026-10-29T17:08:35.505Z"
+        },
+        {
+          "id": "gdev_2",
+          "vehicle_id": "veh_actros",
+          "device_name": "Teltonika FMC130 #02",
+          "provider": "AtlasTrack Telemetry",
+          "imei": "352093081140388",
+          "provider_device_id": "AT-89214",
+          "status": "active",
+          "installed_at": "2024-02-20",
+          "last_seen_at": "2026-11-19T13:05:35.505Z",
+          "created_at": "2026-10-30T13:08:35.505Z"
+        },
+        {
+          "id": "gdev_3",
+          "vehicle_id": "veh_renault",
+          "device_name": "Queclink GV300 #03",
+          "provider": "AtlasTrack Telemetry",
+          "imei": "864291042219014",
+          "provider_device_id": "AT-45019",
+          "status": "active",
+          "installed_at": "2024-05-04",
+          "last_seen_at": "2026-11-19T10:38:35.505Z",
+          "created_at": "2026-11-02T21:08:35.505Z"
+        }
+      ],
+      "gps_positions": [
+        {
+          "id": "gpos_1",
+          "vehicle_id": "veh_fh16",
+          "trip_id": "trp_001",
+          "latitude": 34.9182,
+          "longitude": -6.0825,
+          "speed_kmh": 82,
+          "heading": 18,
+          "recorded_at": "2026-11-19T13:06:47.505Z"
+        },
+        {
+          "id": "gpos_2",
+          "vehicle_id": "veh_actros",
+          "trip_id": "trp_002",
+          "latitude": 37.3891,
+          "longitude": -5.9845,
+          "speed_kmh": 86,
+          "heading": 24,
+          "recorded_at": "2026-11-19T13:05:35.505Z"
+        },
+        {
+          "id": "gpos_3",
+          "vehicle_id": "veh_renault",
+          "trip_id": "trp_003",
+          "latitude": 35.8842,
+          "longitude": -5.5019,
+          "speed_kmh": 0,
+          "heading": 0,
+          "recorded_at": "2026-11-19T10:38:35.505Z"
+        }
+      ],
+      "gps_alerts": [
+        {
+          "id": "galr_1",
+          "vehicle_id": "veh_actros",
+          "alert_type": "temperature_warning",
+          "severity": "high",
+          "title": "Variation température caisson (+5.8°C)",
+          "description": "Seuil consigne +4.0°C dépassé brièvement lors du contrôle douanier.",
+          "occurred_at": "2026-11-19T09:08:35.505Z",
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null
+        },
+        {
+          "id": "galr_2",
+          "vehicle_id": "veh_fh16",
+          "alert_type": "geofence_exit",
+          "severity": "medium",
+          "title": "Sortie de zone : Hub Casablanca Ain Sebaâ",
+          "description": "Le véhicule 14820-A-26 a quitté la plateforme logistique à 07:42.",
+          "occurred_at": "2026-11-18T23:08:35.505Z",
+          "acknowledged": true,
+          "acknowledged_by": "usr_logistique_demo",
+          "acknowledged_at": "2026-11-19T00:08:35.505Z"
+        }
+      ],
+      "gps_trip_summaries": [
+        {
+          "id": "gsum_1",
+          "trip_id": "trp_001",
+          "vehicle_id": "veh_fh16",
+          "distance_km": 268,
+          "driving_duration_minutes": 215,
+          "stopped_duration_minutes": 34,
+          "stop_count": 2,
+          "started_at": "2026-11-19T08:08:35.505Z",
+          "ended_at": null,
+          "updated_at": "2026-11-19T13:06:47.505Z"
+        },
+        {
+          "id": "gsum_2",
+          "trip_id": "trp_004",
+          "vehicle_id": "veh_fh16",
+          "distance_km": 1840,
+          "driving_duration_minutes": 1410,
+          "stopped_duration_minutes": 620,
+          "stop_count": 9,
+          "started_at": "2026-11-07T13:08:35.505Z",
+          "ended_at": "2026-11-11T13:08:35.505Z",
+          "updated_at": "2026-11-11T13:08:35.505Z"
+        }
+      ],
+      "gps_geofences": [
+        {
+          "id": "ggeo_1",
+          "name": "Plateforme Casablanca Ain Sebaâ",
+          "description": "Dépôt principal & atelier flotte Atlas Fret",
+          "geometry_json": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -7.555,
+                  33.605
+                ],
+                [
+                  -7.515,
+                  33.605
+                ],
+                [
+                  -7.515,
+                  33.635
+                ],
+                [
+                  -7.555,
+                  33.635
+                ],
+                [
+                  -7.555,
+                  33.605
+                ]
+              ]
+            ]
+          },
+          "is_active": true,
+          "alert_on_entry": true,
+          "alert_on_exit": true,
+          "created_by": "usr_admin_demo",
+          "created_at": "2026-11-02T21:08:35.505Z"
+        },
+        {
+          "id": "ggeo_2",
+          "name": "Terminal Portuaire Tanger Med",
+          "description": "Zone d’accès fret et embarquement Ro-Ro",
+          "geometry_json": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -5.535,
+                  35.87
+                ],
+                [
+                  -5.485,
+                  35.87
+                ],
+                [
+                  -5.485,
+                  35.905
+                ],
+                [
+                  -5.535,
+                  35.905
+                ],
+                [
+                  -5.535,
+                  35.87
+                ]
+              ]
+            ]
+          },
+          "is_active": true,
+          "alert_on_entry": true,
+          "alert_on_exit": false,
+          "created_by": "usr_admin_demo",
+          "created_at": "2026-11-03T07:08:35.505Z"
+        }
+      ],
+      "gps_device_events": [
+        {
+          "id": "gevt_1",
+          "vehicle_id": "veh_fh16",
+          "event_type": "ignition_on",
+          "details": "Contact mis — départ mission MS-2026-041",
+          "occurred_at": "2026-11-19T08:08:35.505Z"
+        },
+        {
+          "id": "gevt_2",
+          "vehicle_id": "veh_actros",
+          "event_type": "border_crossing",
+          "details": "Entrée Espagne — Port d’Algésiras",
+          "occurred_at": "2026-11-19T07:08:35.505Z"
+        },
+        {
+          "id": "gevt_3",
+          "vehicle_id": "veh_renault",
+          "event_type": "ignition_off",
+          "details": "Stationnement sécurisé Tanger Med",
+          "occurred_at": "2026-11-19T10:38:35.505Z"
+        }
+      ],
+      "updated_at": "2026-11-21T10:40:16.359Z"
+    },
+    {
+      "id": "ws_8e4d6c52-96e",
+      "code": "FRET-4845",
+      "name": "STE B2B TRANS",
+      "created_at": "2026-11-18T12:26:57.755Z",
+      "updated_at": "2026-11-21T10:28:15.150Z",
+      "b2b_license": {
+        "pack": "pack_essentiel",
+        "status": "actif",
+        "setup_fee": 1500,
+        "annual_fee": 6000,
+        "currency": "MAD",
+        "max_vehicles": 9,
+        "max_users": 15,
+        "gps_enabled": true,
+        "valid_until": "2026-12-02",
+        "onboarding_checklist": [
+          {
+            "done": true,
+            "id": "chk_clients",
+            "label": "Import du répertoire clients et catalogues villes"
+          },
+          {
+            "done": true,
+            "id": "chk_company",
+            "label": "Paramétrage raison sociale, ICE, RIB et logo facture"
+          },
+          {
+            "label": "Import du parc véhicules et dossiers conducteurs",
+            "id": "chk_fleet",
+            "done": true
+          },
+          {
+            "label": "Validation mise en production et premier cycle de facturation",
+            "id": "chk_prod",
+            "done": false
+          },
+          {
+            "done": false,
+            "id": "chk_training",
+            "label": "Session de formation prise en main (Admin, Logistique, Conducteurs)"
+          }
+        ],
+        "notes": "Espace de démonstration ouvert pour présentation commerciale B2B."
+      },
+      "users": [
+        {
+          "password_hash": "2d790ef547e21324eb7db12510beb72a:8c3f2f8323c66d2890564009321fda9ad3d55a9b75bf93f46b74247a3c952bfb9edbc05d5ad60b800d81ce977b04fcfc62df8c71b3041d79b2413e37f4952380",
+          "workspace_id": "ws_8e4d6c52-96e",
+          "role": "conducteur",
+          "created_at": "2026-11-18T13:09:24.202Z",
+          "email": "ouda.medsaid@gmail.com",
+          "active": true,
+          "id": "usr_0f92f0c8-935",
+          "driver_id": "drv_88bffd71-ec8",
+          "full_name": "Yahya Ouda"
+        },
+        {
+          "workspace_id": "ws_8e4d6c52-96e",
+          "password_hash": "98e439a30df92f8d3a1436d7d3ca1cb3:45b0de3f695c0a3529ee95ae13d2c59430571304566fa117b11e109653a93ee061c80a24b04bfa14e21e61ea97b5e0d918d90aefb4b854ab6c97e3b97cf24607",
+          "active": true,
+          "role": "conducteur",
+          "email": "oudakarim@lunacerame.com",
+          "created_at": "2026-11-18T13:04:12.552Z",
+          "driver_id": "drv_4d03fd78-1cb",
+          "full_name": "ouda  karim",
+          "id": "usr_71cb4af4-5d2"
+        },
+        {
+          "full_name": "KARIM OUDA",
+          "driver_id": null,
+          "active": true,
+          "role": "admin",
+          "email": "safir.oudakarim@gmail.com",
+          "id": "usr_e4168a73-4df",
+          "workspace_id": "ws_8e4d6c52-96e",
+          "password_hash": "9dd8eda550bb37f6247a07d16741f431:226b855b7444920e6f3a3862f16b063dee2ccdfcec2e7901631b628fd86332494984f1972378f2c8a1dfb4df301cb32f39a86c2d7c4922fca1878f88948cc166",
+          "created_at": "2026-11-18T12:26:57.755Z"
+        }
+      ],
+      "vehicles": [
+        {
+          "year": 2026,
+          "vignette_expiry": "2036-02-18",
+          "vehicle_type": "CAMION 3.50T",
+          "brand": "MITSU",
+          "status": "actif",
+          "insurance_expiry": "2027-02-18",
+          "model": "CANTER",
+          "created_at": "2026-11-18T12:29:03.468Z",
+          "id": "veh_39117676-af7",
+          "registration": "5000-A-40",
+          "technical_inspection_expiry": "2027-02-17"
+        },
+        {
+          "vignette_expiry": null,
+          "brand": "VOLVO",
+          "created_at": "2026-11-21T09:03:48.072Z",
+          "registration": "5003-A-40",
+          "id": "veh_5e285c28-172",
+          "insurance_expiry": null,
+          "status": "actif",
+          "vehicle_type": "TRACTEUR",
+          "model": "T950",
+          "year": 2022,
+          "technical_inspection_expiry": null
+        },
+        {
+          "vehicle_type": "TRACTEUR",
+          "model": "T750",
+          "insurance_expiry": "2026-12-10",
+          "created_at": "2026-11-21T09:01:47.056Z",
+          "year": 2026,
+          "status": "actif",
+          "technical_inspection_expiry": "2026-12-19",
+          "brand": "SCANIA",
+          "vignette_expiry": "2027-01-15",
+          "id": "veh_69843885-6ab",
+          "registration": "5002-A-40"
+        },
+        {
+          "created_at": "2026-11-21T09:03:07.496Z",
+          "brand": "C",
+          "vehicle_type": "PLATEAU",
+          "id": "veh_79efbabd-16a",
+          "status": "actif",
+          "insurance_expiry": null,
+          "year": 2024,
+          "technical_inspection_expiry": null,
+          "registration": "7821/08",
+          "model": "D",
+          "vignette_expiry": null
+        },
+        {
+          "insurance_expiry": "2027-01-15",
+          "id": "veh_91f8bd5e-642",
+          "status": "actif",
+          "technical_inspection_expiry": null,
+          "brand": "FORD",
+          "year": 2026,
+          "registration": "5001-A-40",
+          "model": "T850",
+          "vehicle_type": "FOURGONNETTE",
+          "created_at": "2026-11-18T13:07:02.208Z",
+          "vignette_expiry": "2027-01-15"
+        },
+        {
+          "created_at": "2026-11-21T09:02:26.024Z",
+          "year": 2026,
+          "vehicle_type": "FRIGO",
+          "model": "C",
+          "insurance_expiry": null,
+          "vignette_expiry": null,
+          "id": "veh_98044092-191",
+          "status": "actif",
+          "registration": "7820/08",
+          "technical_inspection_expiry": null,
+          "brand": "B"
+        }
+      ],
+      "drivers": [
+        {
+          "created_at": "2026-11-18T13:04:12.552Z",
+          "license_number": "1001/11",
+          "status": "actif",
+          "email": "oudakarim@lunacerame.com",
+          "medical_visit_expiry": null,
+          "id": "drv_4d03fd78-1cb",
+          "license_expiry": "2031-02-05",
+          "phone": "0666627161",
+          "full_name": "ouda  karim"
+        },
+        {
+          "id": "drv_88bffd71-ec8",
+          "status": "actif",
+          "email": "ouda.medsaid@gmail.com",
+          "license_number": "1112/2",
+          "full_name": "Yahya Ouda",
+          "medical_visit_expiry": null,
+          "phone": "0539380494",
+          "license_expiry": "2030-10-17",
+          "created_at": "2026-11-18T13:09:24.202Z"
+        }
+      ],
+      "clients": [
+        {
+          "address": null,
+          "active": true,
+          "contact_name": "RACHID",
+          "id": "cli_905808c7-21b",
+          "email": null,
+          "company_name": "STE LUNA",
+          "ice": null,
+          "phone": null,
+          "client_type": null,
+          "created_at": "2026-11-18T12:29:30.054Z"
+        }
+      ],
+      "countries": [
+        {
+          "name": "France",
+          "is_active": true,
+          "iso_code": "FR",
+          "id": "cnt_03608ef6-aae"
+        },
+        {
+          "is_active": true,
+          "name": "Maroc",
+          "iso_code": "MA",
+          "id": "cnt_314cb2e2-61b"
+        },
+        {
+          "is_active": true,
+          "name": "Espagne",
+          "iso_code": "ES",
+          "id": "cnt_ec499620-0ec"
+        }
+      ],
+      "cities": [
+        {
+          "id": "cty_0cf0a3d3-1c7",
+          "name": "Madrid",
+          "is_active": true,
+          "country_id": "cnt_ec499620-0ec"
+        },
+        {
+          "country_id": "cnt_314cb2e2-61b",
+          "id": "cty_4547af1d-418",
+          "is_active": true,
+          "name": "Tanger Med"
+        },
+        {
+          "country_id": "cnt_314cb2e2-61b",
+          "name": "Marrakech",
+          "id": "cty_563fd998-574",
+          "is_active": true
+        },
+        {
+          "country_id": "cnt_03608ef6-aae",
+          "name": "Marseille",
+          "id": "cty_5767f89f-fed",
+          "is_active": true
+        },
+        {
+          "is_active": true,
+          "name": "Fès",
+          "id": "cty_ab3b2052-a65",
+          "country_id": "cnt_314cb2e2-61b"
+        },
+        {
+          "country_id": "cnt_314cb2e2-61b",
+          "name": "Casablanca",
+          "is_active": true,
+          "id": "cty_aef3a874-d16"
+        },
+        {
+          "name": "Agadir",
+          "is_active": true,
+          "country_id": "cnt_314cb2e2-61b",
+          "id": "cty_efd2e9f6-35f"
+        }
+      ],
+      "trips": [
+        {
+          "reference": "M01",
+          "arrival_date": "2026-11-20",
+          "driver_response": "accepted",
+          "driver_id": "drv_88bffd71-ec8",
+          "departure_date": "2026-11-19",
+          "vehicle_id": "veh_39117676-af7",
+          "created_at": "2026-11-18T12:30:54.358Z",
+          "id": "trp_15fd6630-cf0",
+          "currency": "MAD",
+          "destination": "Madrid",
+          "departure_city_id": "cty_4547af1d-418",
+          "client_id": "cli_905808c7-21b",
+          "created_by": "usr_e4168a73-4df",
+          "departure": "Tanger Med",
+          "destination_city_id": "cty_0cf0a3d3-1c7",
+          "revenue": 16000,
+          "driver_notes": null,
+          "status": "Terminée"
+        },
+        {
+          "destination_city_id": "cty_4547af1d-418",
+          "departure_city_id": "cty_efd2e9f6-35f",
+          "client_id": "cli_905808c7-21b",
+          "departure": "Agadir",
+          "currency": "MAD",
+          "status": "Terminée",
+          "driver_id": "drv_4d03fd78-1cb",
+          "reference": "M03",
+          "driver_notes": null,
+          "destination": "Tanger Med",
+          "created_at": "2026-11-18T13:15:29.334Z",
+          "driver_response": "pending",
+          "vehicle_id": "veh_91f8bd5e-642",
+          "revenue": 9500,
+          "departure_date": "2026-11-03",
+          "created_by": "usr_e4168a73-4df",
+          "arrival_date": "2026-11-05",
+          "id": "trp_3f6167e8-70d"
+        },
+        {
+          "destination_city_id": "cty_5767f89f-fed",
+          "driver_response": "accepted",
+          "vehicle_id": "veh_39117676-af7",
+          "created_at": "2026-11-20T21:01:23.983Z",
+          "arrival_date": "2026-11-21",
+          "destination": "Marseille",
+          "currency": "MAD",
+          "created_by": "usr_e4168a73-4df",
+          "departure_city_id": "cty_0cf0a3d3-1c7",
+          "departure_date": "2026-11-20",
+          "revenue": 8000,
+          "driver_id": "drv_88bffd71-ec8",
+          "status": "À planifier",
+          "reference": "M6",
+          "departure": "Madrid",
+          "client_id": "cli_905808c7-21b",
+          "driver_notes": null,
+          "id": "trp_54125170-0b8"
+        },
+        {
+          "arrival_date": "2026-11-23",
+          "status": "À planifier",
+          "trailer_id": "veh_79efbabd-16a",
+          "id": "trp_b6875a64-95a",
+          "departure_city_id": "cty_efd2e9f6-35f",
+          "driver_response": "accepted",
+          "created_by": "usr_e4168a73-4df",
+          "revenue": 7500,
+          "created_at": "2026-11-21T09:22:50.783Z",
+          "destination_city_id": "cty_4547af1d-418",
+          "vehicle_id": "veh_5e285c28-172",
+          "reference": "M07",
+          "driver_id": "drv_4d03fd78-1cb",
+          "destination": "Tanger Med",
+          "driver_notes": null,
+          "tractor_ids": [
+            "veh_5e285c28-172"
+          ],
+          "currency": "MAD",
+          "departure": "Agadir",
+          "departure_date": "2026-11-22",
+          "client_id": "cli_905808c7-21b"
+        },
+        {
+          "created_by": "usr_e4168a73-4df",
+          "vehicle_id": "veh_39117676-af7",
+          "created_at": "2026-11-18T13:16:26.066Z",
+          "arrival_date": "2026-11-08",
+          "id": "trp_c38d95df-fc4",
+          "departure_city_id": "cty_4547af1d-418",
+          "revenue": 14500,
+          "reference": "M04",
+          "destination": "Madrid",
+          "driver_id": "drv_88bffd71-ec8",
+          "currency": "MAD",
+          "driver_response": "pending",
+          "destination_city_id": "cty_0cf0a3d3-1c7",
+          "departure_date": "2026-11-06",
+          "departure": "Tanger Med",
+          "status": "Terminée",
+          "client_id": "cli_905808c7-21b",
+          "driver_notes": null
+        },
+        {
+          "revenue": 9500,
+          "driver_notes": null,
+          "status": "Terminée",
+          "created_by": "usr_e4168a73-4df",
+          "id": "trp_c51b4dda-d36",
+          "currency": "MAD",
+          "departure_city_id": "cty_4547af1d-418",
+          "created_at": "2026-11-18T13:14:37.506Z",
+          "vehicle_id": "veh_91f8bd5e-642",
+          "destination": "Agadir",
+          "driver_id": "drv_4d03fd78-1cb",
+          "arrival_date": "2026-11-02",
+          "reference": "M02",
+          "driver_response": "pending",
+          "departure": "Tanger Med",
+          "client_id": "cli_905808c7-21b",
+          "destination_city_id": "cty_efd2e9f6-35f",
+          "departure_date": "2026-11-01"
+        },
+        {
+          "created_at": "2026-11-18T12:30:08.261Z",
+          "vehicle_id": "veh_39117676-af7",
+          "client_id": "cli_905808c7-21b",
+          "departure": "Casablanca",
+          "reference": "M00",
+          "driver_response": "accepted",
+          "arrival_date": "2026-11-18",
+          "departure_date": "2026-11-17",
+          "created_by": "usr_e4168a73-4df",
+          "driver_id": "drv_4d03fd78-1cb",
+          "revenue": 6500,
+          "destination_city_id": "cty_4547af1d-418",
+          "destination": "Tanger Med",
+          "currency": "MAD",
+          "id": "trp_d486c864-566",
+          "departure_city_id": "cty_aef3a874-d16",
+          "status": "Terminée",
+          "driver_notes": null
+        },
+        {
+          "tractor_ids": [
+            "veh_69843885-6ab"
+          ],
+          "currency": "MAD",
+          "id": "trp_eff30442-501",
+          "departure_city_id": "cty_4547af1d-418",
+          "arrival_date": "2026-11-24",
+          "vehicle_id": "veh_69843885-6ab",
+          "created_at": "2026-11-21T09:25:03.393Z",
+          "destination_city_id": "cty_5767f89f-fed",
+          "trailer_id": "veh_98044092-191",
+          "destination": "Marseille",
+          "departure_date": "2026-11-22",
+          "created_by": "usr_e4168a73-4df",
+          "status": "À planifier",
+          "client_id": "cli_905808c7-21b",
+          "driver_notes": null,
+          "departure": "Tanger Med",
+          "revenue": 0,
+          "driver_id": "drv_88bffd71-ec8",
+          "driver_response": "accepted",
+          "reference": "M08"
+        }
+      ],
+      "expenses": [
+        {
+          "reviewed_by": null,
+          "description": null,
+          "reviewed_at": null,
+          "document_id": null,
+          "expense_type": "FRAIS DEPLACEMENT",
+          "created_at": "2026-11-18T13:21:58.415Z",
+          "expense_date": "2026-11-18",
+          "id": "exp_05ecb5c1-38f",
+          "currency": "MAD",
+          "amount": 1500,
+          "created_by": "usr_0f92f0c8-935",
+          "submitted_by_role": "conducteur",
+          "trip_id": "trp_c38d95df-fc4",
+          "approval_status": "en_attente"
+        },
+        {
+          "reviewed_at": null,
+          "approval_status": "en_attente",
+          "document_id": null,
+          "currency": "MAD",
+          "reviewed_by": null,
+          "expense_date": "2026-11-18",
+          "amount": 800,
+          "description": null,
+          "trip_id": "trp_c51b4dda-d36",
+          "created_at": "2026-11-18T13:23:58.215Z",
+          "expense_type": "FRAIS DEPLACEMENT",
+          "id": "exp_22debf79-bcd",
+          "created_by": "usr_71cb4af4-5d2",
+          "submitted_by_role": "conducteur"
+        },
+        {
+          "id": "exp_2e98ccde-2f6",
+          "description": null,
+          "reviewed_by": null,
+          "trip_id": "trp_c38d95df-fc4",
+          "document_id": null,
+          "expense_date": "2026-11-18",
+          "reviewed_at": null,
+          "currency": "MAD",
+          "approval_status": "en_attente",
+          "expense_type": "BATEAU",
+          "created_at": "2026-11-18T13:18:55.523Z",
+          "submitted_by_role": "conducteur",
+          "created_by": "usr_0f92f0c8-935",
+          "amount": 2000
+        },
+        {
+          "trip_id": "trp_15fd6630-cf0",
+          "amount": 2000,
+          "reviewed_at": null,
+          "document_id": null,
+          "id": "exp_59d39fb3-fe2",
+          "expense_date": "2026-11-18",
+          "reviewed_by": null,
+          "description": null,
+          "created_by": "usr_0f92f0c8-935",
+          "expense_type": "BATEAUX",
+          "currency": "MAD",
+          "submitted_by_role": "conducteur",
+          "approval_status": "en_attente",
+          "created_at": "2026-11-18T13:19:40.219Z"
+        },
+        {
+          "trip_id": "trp_15fd6630-cf0",
+          "currency": "MAD",
+          "description": null,
+          "amount": 6500,
+          "reviewed_by": null,
+          "expense_type": "CARBURANT",
+          "document_id": null,
+          "reviewed_at": null,
+          "submitted_by_role": "conducteur",
+          "created_at": "2026-11-18T13:19:24.453Z",
+          "expense_date": "2026-11-18",
+          "id": "exp_6aea3369-cf6",
+          "approval_status": "en_attente",
+          "created_by": "usr_0f92f0c8-935"
+        },
+        {
+          "reviewed_at": null,
+          "created_at": "2026-11-18T13:25:35.574Z",
+          "document_id": null,
+          "trip_id": "trp_3f6167e8-70d",
+          "submitted_by_role": "conducteur",
+          "reviewed_by": null,
+          "currency": "MAD",
+          "created_by": "usr_71cb4af4-5d2",
+          "expense_type": "FRAIS DEPLACEMENT",
+          "amount": 800,
+          "description": null,
+          "expense_date": "2026-11-18",
+          "approval_status": "en_attente",
+          "id": "exp_78227933-0c8"
+        },
+        {
+          "expense_type": "CARRBURANT",
+          "reviewed_by": null,
+          "description": null,
+          "approval_status": "en_attente",
+          "reviewed_at": null,
+          "document_id": null,
+          "currency": "MAD",
+          "created_by": "usr_0f92f0c8-935",
+          "submitted_by_role": "conducteur",
+          "id": "exp_7ab8cd10-cc8",
+          "trip_id": "trp_c38d95df-fc4",
+          "amount": 4500,
+          "created_at": "2026-11-18T13:18:08.133Z",
+          "expense_date": "2026-11-18"
+        },
+        {
+          "id": "exp_9d244030-9f9",
+          "created_at": "2026-11-18T13:23:36.845Z",
+          "expense_date": "2026-11-18",
+          "created_by": "usr_71cb4af4-5d2",
+          "trip_id": "trp_c51b4dda-d36",
+          "description": null,
+          "reviewed_by": null,
+          "amount": 800,
+          "document_id": null,
+          "expense_type": "AUTOROUTE",
+          "approval_status": "en_attente",
+          "currency": "MAD",
+          "reviewed_at": null,
+          "submitted_by_role": "conducteur"
+        },
+        {
+          "reviewed_at": null,
+          "id": "exp_a1e7131c-434",
+          "document_id": null,
+          "reviewed_by": null,
+          "approval_status": "en_attente",
+          "expense_type": "CARBURANT",
+          "description": null,
+          "currency": "MAD",
+          "created_at": "2026-11-18T13:23:22.552Z",
+          "expense_date": "2026-11-18",
+          "amount": 2500,
+          "created_by": "usr_71cb4af4-5d2",
+          "trip_id": "trp_c51b4dda-d36",
+          "submitted_by_role": "conducteur"
+        },
+        {
+          "created_by": "usr_71cb4af4-5d2",
+          "trip_id": "trp_3f6167e8-70d",
+          "submitted_by_role": "conducteur",
+          "currency": "MAD",
+          "approval_status": "en_attente",
+          "created_at": "2026-11-18T13:25:15.031Z",
+          "amount": 800,
+          "expense_type": "AUTOROUTE",
+          "document_id": null,
+          "expense_date": "2026-11-18",
+          "reviewed_at": null,
+          "description": null,
+          "reviewed_by": null,
+          "id": "exp_bdb9a94c-627"
+        },
+        {
+          "approval_status": "en_attente",
+          "expense_date": "2026-11-18",
+          "reviewed_at": null,
+          "currency": "MAD",
+          "document_id": null,
+          "amount": 450,
+          "reviewed_by": null,
+          "description": null,
+          "id": "exp_c250212e-66f",
+          "created_by": "usr_0f92f0c8-935",
+          "submitted_by_role": "conducteur",
+          "expense_type": "AUTOROUTE",
+          "trip_id": "trp_c38d95df-fc4",
+          "created_at": "2026-11-18T13:18:39.789Z"
+        },
+        {
+          "expense_date": "2026-11-18",
+          "created_by": "usr_0f92f0c8-935",
+          "id": "exp_d8842162-48d",
+          "trip_id": "trp_15fd6630-cf0",
+          "created_at": "2026-11-18T13:21:28.935Z",
+          "amount": 1500,
+          "reviewed_at": null,
+          "document_id": null,
+          "approval_status": "en_attente",
+          "reviewed_by": null,
+          "expense_type": "FRAIS DEPLACEMENT",
+          "description": null,
+          "submitted_by_role": "conducteur",
+          "currency": "MAD"
+        },
+        {
+          "created_by": "usr_0f92f0c8-935",
+          "currency": "MAD",
+          "submitted_by_role": "conducteur",
+          "approval_status": "en_attente",
+          "created_at": "2026-11-20T12:59:06.876Z",
+          "expense_date": "2026-11-20",
+          "trip_id": "trp_15fd6630-cf0",
+          "id": "exp_ef8c4158-2ae",
+          "description": "Gardien",
+          "expense_type": "Gardiennage",
+          "reviewed_by": null,
+          "document_id": null,
+          "reviewed_at": null,
+          "amount": 100
+        },
+        {
+          "id": "exp_fd6536c6-ff8",
+          "created_at": "2026-11-18T13:24:52.720Z",
+          "expense_date": "2026-11-18",
+          "created_by": "usr_71cb4af4-5d2",
+          "description": null,
+          "trip_id": "trp_3f6167e8-70d",
+          "reviewed_by": null,
+          "amount": 2000,
+          "document_id": null,
+          "approval_status": "en_attente",
+          "currency": "MAD",
+          "expense_type": "CARBURANT",
+          "reviewed_at": null,
+          "submitted_by_role": "conducteur"
+        }
+      ],
+      "maintenance": [],
+      "documents": [
+        {
+          "media_kind": "signature",
+          "file_path": "ws_8e4d6c52-96e/trp_c38d95df-fc4/1795007846644_signature_client_M04.png",
+          "driver_id": "drv_88bffd71-ec8",
+          "created_at": "2026-11-18T13:17:26.644Z",
+          "trip_id": "trp_c38d95df-fc4",
+          "id": "doc_1537fd93-29d",
+          "mime_type": "image/png",
+          "document_name": "Signature client - M04.png",
+          "uploaded_by": "usr_0f92f0c8-935",
+          "file_data": "data:image/png;base64,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",
+          "expiry_date": null,
+          "document_type": "Signature"
+        },
+        {
+          "document_type": "Signature",
+          "id": "doc_28f3befe-c82",
+          "file_path": "ws_8e4d6c52-96e/trp_15fd6630-cf0/1795179452613_signature_client_M01.png",
+          "media_kind": "signature",
+          "driver_id": "drv_88bffd71-ec8",
+          "document_name": "Signature client - M01.png",
+          "created_at": "2026-11-20T12:57:32.613Z",
+          "expiry_date": null,
+          "trip_id": "trp_15fd6630-cf0",
+          "uploaded_by": "usr_0f92f0c8-935",
+          "file_data": "data:image/png;base64,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",
+          "mime_type": "image/png"
+        },
+        {
+          "document_type": "Signature",
+          "uploaded_by": "usr_71cb4af4-5d2",
+          "document_name": "Signature client - M03.png",
+          "expiry_date": null,
+          "file_path": "ws_8e4d6c52-96e/trp_3f6167e8-70d/1795008276495_signature_client_M03.png",
+          "driver_id": "drv_4d03fd78-1cb",
+          "trip_id": "trp_3f6167e8-70d",
+          "mime_type": "image/png",
+          "created_at": "2026-11-18T13:24:36.495Z",
+          "media_kind": "signature",
+          "file_data": "data:image/png;base64,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",
+          "id": "doc_9a6e5fd0-34f"
+        },
+        {
+          "media_kind": "signature",
+          "mime_type": "image/png",
+          "file_data": "data:image/png;base64,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",
+          "created_at": "2026-11-18T13:22:57.429Z",
+          "trip_id": "trp_c51b4dda-d36",
+          "id": "doc_cd8aac30-2b8",
+          "file_path": "ws_8e4d6c52-96e/trp_c51b4dda-d36/1795008177429_signature_client_M02.png",
+          "uploaded_by": "usr_71cb4af4-5d2",
+          "expiry_date": null,
+          "document_type": "Signature",
+          "document_name": "Signature client - M02.png",
+          "driver_id": "drv_4d03fd78-1cb"
+        }
+      ],
+      "employees": [],
+      "payroll": [],
+      "payroll_allocations": [],
+      "client_proposals": [],
+      "audit_logs": [
+        {
+          "id": "aud_2eab5119-6fd",
+          "user_id": "usr_e4168a73-4df",
+          "user_name": "KARIM OUDA",
+          "action": "SEND_INVOICE_EMAIL",
+          "table_name": "invoices",
+          "record_id": "inv_fa538fda-0c8",
+          "details": {
+            "invoice_number": "FAC-0001",
+            "to": "safir.oudakarim@gmail.com",
+            "cc": [
+              "safir.oudakarim@gmail.com"
+            ],
+            "mode": "client_handoff"
+          },
+          "created_at": "2026-11-21T10:28:15.150Z"
+        },
+        {
+          "id": "aud_445ddd65-7d9",
+          "user_id": "usr_e4168a73-4df",
+          "user_name": "KARIM OUDA",
+          "action": "SEND_INVOICE_EMAIL",
+          "table_name": "invoices",
+          "record_id": "inv_fa538fda-0c8",
+          "details": {
+            "invoice_number": "FAC-0001",
+            "to": "safir.oudakarim@gmail.com",
+            "cc": [
+              "safir.oudakarim@gmail.com"
+            ],
+            "mode": "client_handoff"
+          },
+          "created_at": "2026-11-21T10:28:10.616Z"
+        },
+        {
+          "id": "aud_045f42c9-65a",
+          "record_id": "doc_cd8aac30-2b8",
+          "details": {
+            "document_name": "Signature client - M02.png",
+            "trip_reference": "M02",
+            "media_kind": "signature"
+          },
+          "action": "UPLOAD_DOCUMENT",
+          "table_name": "documents",
+          "user_id": "usr_71cb4af4-5d2",
+          "created_at": "2026-11-18T13:22:57.429Z",
+          "user_name": "ouda  karim"
+        },
+        {
+          "table_name": "trips",
+          "id": "aud_07a355db-e44",
+          "details": {
+            "reference": "M01"
+          },
+          "user_name": "KARIM OUDA",
+          "action": "CREATE_TRIP",
+          "created_at": "2026-11-18T12:30:54.358Z",
+          "user_id": "usr_e4168a73-4df",
+          "record_id": "trp_15fd6630-cf0"
+        },
+        {
+          "user_name": "ouda  karim",
+          "id": "aud_10ed8646-f08",
+          "created_at": "2026-11-18T13:23:36.845Z",
+          "user_id": "usr_71cb4af4-5d2",
+          "action": "DECLARE_DRIVER_EXPENSE",
+          "table_name": "expenses",
+          "details": {
+            "expense_type": "AUTOROUTE",
+            "amount": 800,
+            "trip_reference": "M02",
+            "has_receipt": false,
+            "currency": "MAD"
+          },
+          "record_id": "exp_9d244030-9f9"
+        },
+        {
+          "action": "RESPOND_TRIP",
+          "details": {
+            "reference": "M6",
+            "response": "accepted"
+          },
+          "record_id": "trp_54125170-0b8",
+          "created_at": "2026-11-21T07:40:43.419Z",
+          "user_name": "Yahya Ouda",
+          "user_id": "usr_0f92f0c8-935",
+          "table_name": "trips",
+          "id": "aud_17b98781-08f"
+        },
+        {
+          "id": "aud_185fd61b-18c",
+          "record_id": "trp_d486c864-566",
+          "details": {
+            "reference": "M00",
+            "response": "accepted"
+          },
+          "created_at": "2026-11-18T13:07:56.294Z",
+          "user_name": "ouda  karim",
+          "table_name": "trips",
+          "user_id": "usr_71cb4af4-5d2",
+          "action": "RESPOND_TRIP"
+        },
+        {
+          "table_name": "trips",
+          "id": "aud_1e641c6a-b50",
+          "action": "CREATE_TRIP",
+          "user_name": "KARIM OUDA",
+          "details": {
+            "reference": "M07"
+          },
+          "created_at": "2026-11-21T09:22:50.783Z",
+          "record_id": "trp_b6875a64-95a",
+          "user_id": "usr_e4168a73-4df"
+        },
+        {
+          "table_name": "drivers",
+          "details": {
+            "full_name": "YAHYA OUDA"
+          },
+          "user_name": "KARIM OUDA",
+          "record_id": "drv_96a098c5-3f8",
+          "created_at": "2026-11-18T13:12:45.818Z",
+          "action": "DELETE_DRIVER",
+          "id": "aud_23e7b203-36e",
+          "user_id": "usr_e4168a73-4df"
+        },
+        {
+          "user_id": "usr_71cb4af4-5d2",
+          "record_id": "trp_b6875a64-95a",
+          "created_at": "2026-11-21T09:49:45.014Z",
+          "action": "RESPOND_TRIP",
+          "details": {
+            "response": "accepted",
+            "reference": "M07"
+          },
+          "user_name": "ouda  karim",
+          "id": "aud_2684fe72-55b",
+          "table_name": "trips"
+        },
+        {
+          "user_name": "KARIM OUDA",
+          "action": "UPDATE_TRIP",
+          "details": {
+            "reference": "M01",
+            "status": "À planifier"
+          },
+          "id": "aud_35647e32-6a9",
+          "created_at": "2026-11-18T13:07:28.977Z",
+          "user_id": "usr_e4168a73-4df",
+          "record_id": "trp_15fd6630-cf0",
+          "table_name": "trips"
+        },
+        {
+          "details": {
+            "currency": "MAD",
+            "trip_reference": "M02",
+            "has_receipt": false,
+            "amount": 2500,
+            "expense_type": "CARBURANT"
+          },
+          "record_id": "exp_a1e7131c-434",
+          "action": "DECLARE_DRIVER_EXPENSE",
+          "id": "aud_3aa105b2-294",
+          "table_name": "expenses",
+          "user_id": "usr_71cb4af4-5d2",
+          "created_at": "2026-11-18T13:23:22.552Z",
+          "user_name": "ouda  karim"
+        },
+        {
+          "action": "DECLARE_DRIVER_EXPENSE",
+          "id": "aud_3d3b10a4-a86",
+          "table_name": "expenses",
+          "user_id": "usr_0f92f0c8-935",
+          "user_name": "Yahya Ouda",
+          "details": {
+            "expense_type": "AUTOROUTE",
+            "currency": "MAD",
+            "amount": 450,
+            "trip_reference": "M04",
+            "has_receipt": false
+          },
+          "created_at": "2026-11-18T13:18:39.789Z",
+          "record_id": "exp_c250212e-66f"
+        },
+        {
+          "created_at": "2026-11-18T15:24:52.974Z",
+          "user_name": "KARIM OUDA",
+          "user_id": "usr_e4168a73-4df",
+          "table_name": "b2b_requests",
+          "record_id": "req_dc29fb7e-90c",
+          "details": {
+            "currency": "MAD",
+            "pack": "pack_essentiel"
+          },
+          "id": "aud_449b1f3d-e08",
+          "action": "REQUEST_B2B_UPGRADE"
+        },
+        {
+          "id": "aud_4933238b-c47",
+          "created_at": "2026-11-18T13:24:36.495Z",
+          "user_name": "ouda  karim",
+          "user_id": "usr_71cb4af4-5d2",
+          "table_name": "documents",
+          "action": "UPLOAD_DOCUMENT",
+          "details": {
+            "document_name": "Signature client - M03.png",
+            "trip_reference": "M03",
+            "media_kind": "signature"
+          },
+          "record_id": "doc_9a6e5fd0-34f"
+        },
+        {
+          "user_name": "Yahya Ouda",
+          "created_at": "2026-11-18T13:21:28.935Z",
+          "details": {
+            "expense_type": "FRAIS DEPLACEMENT",
+            "amount": 1500,
+            "trip_reference": "M01",
+            "has_receipt": false,
+            "currency": "MAD"
+          },
+          "action": "DECLARE_DRIVER_EXPENSE",
+          "id": "aud_50225256-da0",
+          "table_name": "expenses",
+          "user_id": "usr_0f92f0c8-935",
+          "record_id": "exp_d8842162-48d"
+        },
+        {
+          "user_name": "KARIM OUDA",
+          "id": "aud_543bdc1e-e1b",
+          "details": {
+            "email": "oudakarim@lunacerame.com",
+            "role": "conducteur"
+          },
+          "created_at": "2026-11-18T13:04:12.553Z",
+          "action": "CREATE_USER",
+          "record_id": "usr_71cb4af4-5d2",
+          "table_name": "profiles",
+          "user_id": "usr_e4168a73-4df"
+        },
+        {
+          "record_id": "trp_eff30442-501",
+          "id": "aud_59df9441-651",
+          "details": {
+            "reference": "M08"
+          },
+          "created_at": "2026-11-21T09:25:03.393Z",
+          "action": "CREATE_TRIP",
+          "user_id": "usr_e4168a73-4df",
+          "user_name": "KARIM OUDA",
+          "table_name": "trips"
+        },
+        {
+          "id": "aud_5aa8befc-5c2",
+          "table_name": "vehicles",
+          "user_id": "usr_e4168a73-4df",
+          "record_id": "veh_69843885-6ab",
+          "user_name": "KARIM OUDA",
+          "details": {
+            "registration": "5002-A-40"
+          },
+          "created_at": "2026-11-21T09:01:47.056Z",
+          "action": "CREATE_VEHICLE"
+        },
+        {
+          "user_id": "usr_0f92f0c8-935",
+          "id": "aud_605a9a24-273",
+          "record_id": "trp_15fd6630-cf0",
+          "created_at": "2026-11-18T13:11:15.363Z",
+          "details": {
+            "response": "accepted",
+            "reference": "M01"
+          },
+          "user_name": "Yahya Ouda",
+          "table_name": "trips",
+          "action": "RESPOND_TRIP"
+        },
+        {
+          "table_name": "documents",
+          "user_name": "Yahya Ouda",
+          "user_id": "usr_0f92f0c8-935",
+          "action": "UPLOAD_DOCUMENT",
+          "id": "aud_6a368035-c17",
+          "created_at": "2026-11-20T12:57:32.613Z",
+          "record_id": "doc_28f3befe-c82",
+          "details": {
+            "document_name": "Signature client - M01.png",
+            "media_kind": "signature",
+            "trip_reference": "M01"
+          }
+        },
+        {
+          "user_name": "KARIM OUDA",
+          "created_at": "2026-11-18T14:33:43.417Z",
+          "user_id": "usr_e4168a73-4df",
+          "record_id": "1",
+          "table_name": "company_settings",
+          "action": "UPDATE_COMPANY",
+          "details": {
+            "company_name": "STE B2B TRANS"
+          },
+          "id": "aud_6b6c1d76-7a8"
+        },
+        {
+          "user_id": "usr_e4168a73-4df",
+          "created_at": "2026-11-18T13:02:49.685Z",
+          "action": "UPDATE_USER",
+          "record_id": "usr_e4168a73-4df",
+          "user_name": "KARIM OUDA",
+          "details": {
+            "active": true,
+            "role": "admin"
+          },
+          "table_name": "profiles",
+          "id": "aud_722b36bf-e8e"
+        },
+        {
+          "record_id": "trp_eff30442-501",
+          "details": {
+            "response": "accepted",
+            "reference": "M08"
+          },
+          "table_name": "trips",
+          "user_id": "usr_0f92f0c8-935",
+          "id": "aud_749e2c21-e22",
+          "created_at": "2026-11-21T09:50:30.080Z",
+          "action": "RESPOND_TRIP",
+          "user_name": "Yahya Ouda"
+        },
+        {
+          "table_name": "expenses",
+          "id": "aud_7f8a841b-cf4",
+          "details": {
+            "expense_type": "CARRBURANT",
+            "has_receipt": false,
+            "currency": "MAD",
+            "trip_reference": "M04",
+            "amount": 4500
+          },
+          "user_name": "Yahya Ouda",
+          "action": "DECLARE_DRIVER_EXPENSE",
+          "created_at": "2026-11-18T13:18:08.133Z",
+          "user_id": "usr_0f92f0c8-935",
+          "record_id": "exp_7ab8cd10-cc8"
+        },
+        {
+          "record_id": "trp_54125170-0b8",
+          "user_id": "usr_e4168a73-4df",
+          "table_name": "trips",
+          "id": "aud_83fdded4-98c",
+          "action": "CREATE_TRIP",
+          "created_at": "2026-11-20T21:01:23.983Z",
+          "user_name": "KARIM OUDA",
+          "details": {
+            "reference": "M6"
+          }
+        },
+        {
+          "user_id": "usr_e4168a73-4df",
+          "created_at": "2026-11-18T13:15:29.334Z",
+          "action": "CREATE_TRIP",
+          "user_name": "KARIM OUDA",
+          "id": "aud_8617e617-94a",
+          "details": {
+            "reference": "M03"
+          },
+          "record_id": "trp_3f6167e8-70d",
+          "table_name": "trips"
+        },
+        {
+          "user_id": "usr_e4168a73-4df",
+          "action": "UPDATE_TRIP",
+          "created_at": "2026-11-19T09:23:31.715Z",
+          "user_name": "KARIM OUDA",
+          "record_id": "trp_d486c864-566",
+          "details": {
+            "status": "Terminée",
+            "reference": "M00"
+          },
+          "id": "aud_8afcb110-d44",
+          "table_name": "trips"
+        },
+        {
+          "record_id": "veh_5e285c28-172",
+          "details": {
+            "registration": "5003-A-40"
+          },
+          "created_at": "2026-11-21T09:03:48.072Z",
+          "action": "CREATE_VEHICLE",
+          "id": "aud_921bd473-b1a",
+          "user_id": "usr_e4168a73-4df",
+          "user_name": "KARIM OUDA",
+          "table_name": "vehicles"
+        },
+        {
+          "details": {
+            "amount": 6500,
+            "currency": "MAD",
+            "trip_reference": "M01",
+            "has_receipt": false,
+            "expense_type": "CARBURANT"
+          },
+          "id": "aud_99212848-865",
+          "table_name": "expenses",
+          "user_name": "Yahya Ouda",
+          "record_id": "exp_6aea3369-cf6",
+          "created_at": "2026-11-18T13:19:24.453Z",
+          "user_id": "usr_0f92f0c8-935",
+          "action": "DECLARE_DRIVER_EXPENSE"
+        },
+        {
+          "user_name": "KARIM OUDA",
+          "action": "CREATE_VEHICLE",
+          "details": {
+            "registration": "7820/08"
+          },
+          "table_name": "vehicles",
+          "id": "aud_9ae653d1-870",
+          "user_id": "usr_e4168a73-4df",
+          "record_id": "veh_98044092-191",
+          "created_at": "2026-11-21T09:02:26.024Z"
+        },
+        {
+          "details": {
+            "registration": "7821/08"
+          },
+          "record_id": "veh_79efbabd-16a",
+          "created_at": "2026-11-21T09:03:07.496Z",
+          "action": "CREATE_VEHICLE",
+          "user_id": "usr_e4168a73-4df",
+          "id": "aud_9c60e352-eb0",
+          "user_name": "KARIM OUDA",
+          "table_name": "vehicles"
+        },
+        {
+          "created_at": "2026-11-18T12:29:03.468Z",
+          "user_id": "usr_e4168a73-4df",
+          "record_id": "veh_39117676-af7",
+          "user_name": "KARIM OUDA",
+          "id": "aud_a144277e-59a",
+          "table_name": "vehicles",
+          "details": {
+            "registration": "5000-A-40"
+          },
+          "action": "CREATE_VEHICLE"
+        },
+        {
+          "details": {
+            "workspace_name": "STE B2B TRANS",
+            "code": "FRET-4845"
+          },
+          "record_id": "ws_8e4d6c52-96e",
+          "table_name": "workspaces",
+          "action": "CREATE_WORKSPACE",
+          "user_name": "KARIM OUDA",
+          "user_id": "usr_e4168a73-4df",
+          "id": "aud_a90c4706-4e9",
+          "created_at": "2026-11-18T12:26:57.755Z"
+        },
+        {
+          "id": "aud_ac488961-66c",
+          "table_name": "expenses",
+          "user_name": "ouda  karim",
+          "details": {
+            "trip_reference": "M03",
+            "amount": 2000,
+            "expense_type": "CARBURANT",
+            "has_receipt": false,
+            "currency": "MAD"
+          },
+          "created_at": "2026-11-18T13:24:52.721Z",
+          "record_id": "exp_fd6536c6-ff8",
+          "user_id": "usr_71cb4af4-5d2",
+          "action": "DECLARE_DRIVER_EXPENSE"
+        },
+        {
+          "created_at": "2026-11-18T12:30:08.261Z",
+          "action": "CREATE_TRIP",
+          "details": {
+            "reference": "M00"
+          },
+          "user_name": "KARIM OUDA",
+          "id": "aud_af8de035-7db",
+          "record_id": "trp_d486c864-566",
+          "table_name": "trips",
+          "user_id": "usr_e4168a73-4df"
+        },
+        {
+          "created_at": "2026-11-18T13:04:32.931Z",
+          "id": "aud_b2d2db63-522",
+          "user_name": "KARIM OUDA",
+          "details": {
+            "reference": "M01",
+            "status": "À planifier"
+          },
+          "record_id": "trp_15fd6630-cf0",
+          "table_name": "trips",
+          "action": "UPDATE_TRIP",
+          "user_id": "usr_e4168a73-4df"
+        },
+        {
+          "user_id": "usr_71cb4af4-5d2",
+          "action": "DECLARE_DRIVER_EXPENSE",
+          "created_at": "2026-11-18T13:23:58.215Z",
+          "id": "aud_bcbd2d65-41b",
+          "record_id": "exp_22debf79-bcd",
+          "details": {
+            "expense_type": "FRAIS DEPLACEMENT",
+            "amount": 800,
+            "trip_reference": "M02",
+            "currency": "MAD",
+            "has_receipt": false
+          },
+          "user_name": "ouda  karim",
+          "table_name": "expenses"
+        },
+        {
+          "user_id": "usr_e4168a73-4df",
+          "action": "UPDATE_TRIP",
+          "id": "aud_c6b11593-ebd",
+          "created_at": "2026-11-18T13:04:37.699Z",
+          "record_id": "trp_d486c864-566",
+          "details": {
+            "reference": "M00",
+            "status": "En cours"
+          },
+          "user_name": "KARIM OUDA",
+          "table_name": "trips"
+        },
+        {
+          "id": "aud_c71b3c4f-003",
+          "details": {
+            "trip_reference": "M03",
+            "expense_type": "FRAIS DEPLACEMENT",
+            "currency": "MAD",
+            "has_receipt": false,
+            "amount": 800
+          },
+          "user_name": "ouda  karim",
+          "action": "DECLARE_DRIVER_EXPENSE",
+          "created_at": "2026-11-18T13:25:35.574Z",
+          "table_name": "expenses",
+          "user_id": "usr_71cb4af4-5d2",
+          "record_id": "exp_78227933-0c8"
+        },
+        {
+          "id": "aud_c8e16ad9-449",
+          "user_id": "usr_0f92f0c8-935",
+          "user_name": "Yahya Ouda",
+          "action": "DECLARE_DRIVER_EXPENSE",
+          "created_at": "2026-11-18T13:18:55.523Z",
+          "details": {
+            "currency": "MAD",
+            "amount": 2000,
+            "has_receipt": false,
+            "trip_reference": "M04",
+            "expense_type": "BATEAU"
+          },
+          "table_name": "expenses",
+          "record_id": "exp_2e98ccde-2f6"
+        },
+        {
+          "created_at": "2026-11-20T12:59:06.876Z",
+          "details": {
+            "expense_type": "Gardiennage",
+            "amount": 100,
+            "has_receipt": false,
+            "currency": "MAD",
+            "trip_reference": "M01"
+          },
+          "action": "DECLARE_DRIVER_EXPENSE",
+          "user_name": "Yahya Ouda",
+          "record_id": "exp_ef8c4158-2ae",
+          "user_id": "usr_0f92f0c8-935",
+          "table_name": "expenses",
+          "id": "aud_d2d074bd-d9c"
+        },
+        {
+          "record_id": "exp_59d39fb3-fe2",
+          "table_name": "expenses",
+          "user_id": "usr_0f92f0c8-935",
+          "action": "DECLARE_DRIVER_EXPENSE",
+          "id": "aud_d38cefcc-a8a",
+          "user_name": "Yahya Ouda",
+          "details": {
+            "amount": 2000,
+            "currency": "MAD",
+            "expense_type": "BATEAUX",
+            "trip_reference": "M01",
+            "has_receipt": false
+          },
+          "created_at": "2026-11-18T13:19:40.219Z"
+        },
+        {
+          "table_name": "trips",
+          "details": {
+            "reference": "M02"
+          },
+          "user_name": "KARIM OUDA",
+          "created_at": "2026-11-18T13:14:37.506Z",
+          "user_id": "usr_e4168a73-4df",
+          "record_id": "trp_c51b4dda-d36",
+          "id": "aud_d3e9d9e4-0e4",
+          "action": "CREATE_TRIP"
+        },
+        {
+          "details": {
+            "reference": "M04"
+          },
+          "table_name": "trips",
+          "action": "CREATE_TRIP",
+          "user_name": "KARIM OUDA",
+          "user_id": "usr_e4168a73-4df",
+          "id": "aud_d8ac9581-c7e",
+          "created_at": "2026-11-18T13:16:26.066Z",
+          "record_id": "trp_c38d95df-fc4"
+        },
+        {
+          "user_id": "usr_e4168a73-4df",
+          "created_at": "2026-11-19T09:24:49.258Z",
+          "record_id": "trp_15fd6630-cf0",
+          "id": "aud_dbe8c4f4-655",
+          "action": "UPDATE_TRIP",
+          "details": {
+            "reference": "M01",
+            "status": "En cours"
+          },
+          "table_name": "trips",
+          "user_name": "KARIM OUDA"
+        },
+        {
+          "table_name": "expenses",
+          "record_id": "exp_bdb9a94c-627",
+          "details": {
+            "has_receipt": false,
+            "expense_type": "AUTOROUTE",
+            "amount": 800,
+            "currency": "MAD",
+            "trip_reference": "M03"
+          },
+          "action": "DECLARE_DRIVER_EXPENSE",
+          "id": "aud_e1fc563b-73c",
+          "created_at": "2026-11-18T13:25:15.031Z",
+          "user_name": "ouda  karim",
+          "user_id": "usr_71cb4af4-5d2"
+        },
+        {
+          "details": {
+            "status": "Terminée",
+            "reference": "M01"
+          },
+          "id": "aud_e4fb0f23-e1e",
+          "action": "UPDATE_TRIP",
+          "table_name": "trips",
+          "record_id": "trp_15fd6630-cf0",
+          "user_id": "usr_e4168a73-4df",
+          "user_name": "KARIM OUDA",
+          "created_at": "2026-11-20T12:56:43.122Z"
+        },
+        {
+          "record_id": "doc_1537fd93-29d",
+          "details": {
+            "document_name": "Signature client - M04.png",
+            "media_kind": "signature",
+            "trip_reference": "M04"
+          },
+          "id": "aud_eb56a8cf-e84",
+          "table_name": "documents",
+          "action": "UPLOAD_DOCUMENT",
+          "created_at": "2026-11-18T13:17:26.644Z",
+          "user_id": "usr_0f92f0c8-935",
+          "user_name": "Yahya Ouda"
+        },
+        {
+          "record_id": "trp_15fd6630-cf0",
+          "user_id": "usr_e4168a73-4df",
+          "action": "UPDATE_TRIP",
+          "table_name": "trips",
+          "id": "aud_eb9baa32-300",
+          "details": {
+            "status": "À planifier",
+            "reference": "M01"
+          },
+          "user_name": "KARIM OUDA",
+          "created_at": "2026-11-18T13:10:54.826Z"
+        },
+        {
+          "table_name": "expenses",
+          "user_name": "Yahya Ouda",
+          "details": {
+            "expense_type": "FRAIS DEPLACEMENT",
+            "amount": 1500,
+            "currency": "MAD",
+            "has_receipt": false,
+            "trip_reference": "M04"
+          },
+          "action": "DECLARE_DRIVER_EXPENSE",
+          "created_at": "2026-11-18T13:21:58.415Z",
+          "record_id": "exp_05ecb5c1-38f",
+          "id": "aud_ee85975d-8c6",
+          "user_id": "usr_0f92f0c8-935"
+        },
+        {
+          "user_id": "usr_0f92f0c8-935",
+          "created_at": "2026-11-18T13:09:24.203Z",
+          "user_name": "Yahya Ouda",
+          "details": {
+            "role": "conducteur"
+          },
+          "table_name": "profiles",
+          "record_id": "usr_0f92f0c8-935",
+          "id": "aud_efd4fcb0-5a0",
+          "action": "REGISTER_FREE_USER"
+        },
+        {
+          "table_name": "invoices",
+          "id": "aud_f0087048-461",
+          "record_id": "inv_fa538fda-0c8",
+          "user_id": "usr_e4168a73-4df",
+          "action": "CREATE_INVOICE",
+          "created_at": "2026-11-20T20:54:36.981Z",
+          "details": {
+            "invoice_number": "FAC-0001",
+            "total_ttc": 16000
+          },
+          "user_name": "KARIM OUDA"
+        },
+        {
+          "id": "aud_f5834c99-7b8",
+          "user_name": "KARIM OUDA",
+          "user_id": "usr_e4168a73-4df",
+          "created_at": "2026-11-18T13:07:02.208Z",
+          "action": "CREATE_VEHICLE",
+          "details": {
+            "registration": "5001-A-40"
+          },
+          "record_id": "veh_91f8bd5e-642",
+          "table_name": "vehicles"
+        },
+        {
+          "user_name": "KARIM OUDA",
+          "created_at": "2026-11-18T14:34:01.664Z",
+          "user_id": "usr_e4168a73-4df",
+          "action": "REQUEST_B2B_UPGRADE",
+          "details": {
+            "currency": "MAD",
+            "pack": "pack_essentiel"
+          },
+          "id": "aud_fa8e0ed1-14b",
+          "table_name": "b2b_requests",
+          "record_id": "req_d2e84a21-4c5"
+        }
+      ],
+      "company_settings": {
+        "bank": "",
+        "address": "",
+        "city": "",
+        "company_name": "STE B2B TRANS",
+        "tp": "",
+        "id": 1,
+        "activity": "Transport & Logistique",
+        "phone": "",
+        "logo_url": "",
+        "payment_terms": "Règlement à 30 jours date de facture.",
+        "updated_at": "2026-11-18T14:33:43.417Z",
+        "tax_id": "",
+        "rc": "",
+        "rib": "",
+        "ice": "",
+        "email": "safir.oudakarim@gmail.com"
+      },
+      "invoice_settings": {
+        "id": 1,
+        "prefix": "FAC",
+        "separator": "-",
+        "padding_length": 4,
+        "next_number": 2
+      },
+      "invoices": [
+        {
+          "mission_reference": "M01",
+          "created_at": "2026-11-20T20:54:36.981Z",
+          "due_date": "2026-11-25",
+          "id": "inv_fa538fda-0c8",
+          "client_ice": "—",
+          "entered_amount": 16000,
+          "client_email": "—",
+          "client_id": "cli_905808c7-21b",
+          "total_ttc": 16000,
+          "client_name": "STE LUNA",
+          "trip_id": "trp_15fd6630-cf0",
+          "created_by": "usr_e4168a73-4df",
+          "issue_date": "2026-11-20",
+          "tax_rate": 0,
+          "amount_basis": "HT",
+          "currency": "MAD",
+          "invoice_number": "FAC-0001",
+          "service_description": "Transport Tanger Med - Madrid · M01",
+          "client_address": "—",
+          "status": "draft",
+          "subtotal_ht": 16000,
+          "tax_amount": 0,
+          "notes": "Cmr hhgg555",
+          "last_emailed_at": "2026-11-21T10:28:15.150Z",
+          "last_emailed_to": "safir.oudakarim@gmail.com",
+          "email_sent_count": 2
+        }
+      ],
+      "invoice_payments": [],
+      "gps_devices": [],
+      "gps_positions": [],
+      "gps_alerts": [],
+      "gps_trip_summaries": [],
+      "gps_geofences": [],
+      "gps_device_events": []
+    },
+    {
+      "id": "ws_07de831e-339",
+      "code": "FRET-1122",
+      "name": "safa trans",
+      "created_at": "2026-11-19T11:17:34.548Z",
+      "updated_at": "2026-11-19T11:17:34.548Z",
+      "b2b_license": {
+        "pack": "demo_gratuit",
+        "status": "essai_gratuit",
+        "setup_fee": 0,
+        "annual_fee": 0,
+        "currency": "MAD",
+        "max_vehicles": 25,
+        "max_users": 25,
+        "gps_enabled": true,
+        "valid_until": "2026-12-03",
+        "onboarding_checklist": [
+          {
+            "done": true,
+            "label": "Import du répertoire clients et catalogues villes",
+            "id": "chk_clients"
+          },
+          {
+            "id": "chk_company",
+            "done": true,
+            "label": "Paramétrage raison sociale, ICE, RIB et logo facture"
+          },
+          {
+            "id": "chk_fleet",
+            "done": true,
+            "label": "Import du parc véhicules et dossiers conducteurs"
+          },
+          {
+            "label": "Validation mise en production et premier cycle de facturation",
+            "done": false,
+            "id": "chk_prod"
+          },
+          {
+            "done": false,
+            "id": "chk_training",
+            "label": "Session de formation prise en main (Admin, Logistique, Conducteurs)"
+          }
+        ],
+        "notes": "Espace de démonstration ouvert pour présentation commerciale B2B."
+      },
+      "users": [
+        {
+          "workspace_id": "ws_07de831e-339",
+          "email": "oudasafae@gmail.com",
+          "active": true,
+          "password_hash": "c587b5eca578dc0b64450835c8032668:e4d609046512c4d918c8b68c5a3d50523af87b03d4bfa6e5fa78299f7194f4d359979a7e57fcaf82ffbbf017a03f3039b1e56dd0695850da5bd10fa130b11a23",
+          "id": "usr_a8f8e2dc-51f",
+          "created_at": "2026-11-19T11:17:34.548Z",
+          "full_name": "safae ouda",
+          "role": "admin",
+          "driver_id": null
+        }
+      ],
+      "vehicles": [],
+      "drivers": [],
+      "clients": [],
+      "countries": [
+        {
+          "iso_code": "ES",
+          "name": "Espagne",
+          "is_active": true,
+          "id": "cnt_43796192-27d"
+        },
+        {
+          "iso_code": "MA",
+          "name": "Maroc",
+          "id": "cnt_8300129f-69a",
+          "is_active": true
+        },
+        {
+          "iso_code": "FR",
+          "name": "France",
+          "id": "cnt_bb731e7c-e23",
+          "is_active": true
+        }
+      ],
+      "cities": [
+        {
+          "country_id": "cnt_8300129f-69a",
+          "id": "cty_1df8f328-e60",
+          "is_active": true,
+          "name": "Agadir"
+        },
+        {
+          "name": "Fès",
+          "country_id": "cnt_8300129f-69a",
+          "id": "cty_502a12d0-803",
+          "is_active": true
+        },
+        {
+          "id": "cty_706c94b6-8a9",
+          "is_active": true,
+          "name": "Marseille",
+          "country_id": "cnt_bb731e7c-e23"
+        },
+        {
+          "country_id": "cnt_8300129f-69a",
+          "id": "cty_91bdf280-d74",
+          "name": "Marrakech",
+          "is_active": true
+        },
+        {
+          "id": "cty_9da9b943-b37",
+          "country_id": "cnt_43796192-27d",
+          "is_active": true,
+          "name": "Madrid"
+        },
+        {
+          "id": "cty_c8aed639-cba",
+          "country_id": "cnt_8300129f-69a",
+          "is_active": true,
+          "name": "Tanger Med"
+        },
+        {
+          "name": "Casablanca",
+          "is_active": true,
+          "id": "cty_dbbec25a-386",
+          "country_id": "cnt_8300129f-69a"
+        }
+      ],
+      "trips": [],
+      "expenses": [],
+      "maintenance": [],
+      "documents": [],
+      "employees": [],
+      "payroll": [],
+      "payroll_allocations": [],
+      "client_proposals": [],
+      "audit_logs": [
+        {
+          "user_id": "usr_a8f8e2dc-51f",
+          "action": "CREATE_WORKSPACE",
+          "record_id": "ws_07de831e-339",
+          "user_name": "safae ouda",
+          "created_at": "2026-11-19T11:17:34.548Z",
+          "details": {
+            "code": "FRET-1122",
+            "workspace_name": "safa trans"
+          },
+          "table_name": "workspaces",
+          "id": "aud_f4d13137-7a3"
+        }
+      ],
+      "company_settings": {
+        "email": "oudasafae@gmail.com",
+        "logo_url": "",
+        "city": "",
+        "address": "",
+        "rib": "",
+        "rc": "",
+        "ice": "",
+        "phone": "",
+        "activity": "Transport & Logistique",
+        "updated_at": "2026-11-19T11:17:34.548Z",
+        "tax_id": "",
+        "id": 1,
+        "tp": "",
+        "company_name": "SAFA TRANS",
+        "bank": "",
+        "payment_terms": "Règlement à 30 jours date de facture."
+      },
+      "invoice_settings": {
+        "padding_length": 4,
+        "next_number": 1,
+        "separator": "-",
+        "id": 1,
+        "prefix": "FAC"
+      },
+      "invoices": [],
+      "invoice_payments": [],
+      "gps_devices": [],
+      "gps_positions": [],
+      "gps_alerts": [],
+      "gps_trip_summaries": [],
+      "gps_geofences": [],
+      "gps_device_events": []
+    }
+  ],
+  "b2b_requests": [
+    {
+      "id": "req_d2e84a21-4c5",
+      "company_name": "STE B2B TRANS",
+      "contact_name": "KARIM OUDA",
+      "phone": "+212666627161",
+      "email": "safir.oudakarim@gmail.com",
+      "fleet_size": 2,
+      "pack": "pack_essentiel",
+      "currency": "MAD",
+      "notes": "Demande d’activation / évolution depuis l’espace FRET-4845 (STE B2B TRANS).",
+      "status": "en_deploiement",
+      "provisioned_workspace_code": "FRET-4845",
+      "created_at": "2026-11-18T14:34:03.317Z",
+      "updated_at": "2026-11-21T10:39:38.367Z"
+    }
+  ],
+  "vendor_accounts": [
+    {
+      "id": "vnd_primary",
+      "email": "editeur@fretmanager.ma",
+      "password_hash": "44e00d171dccfab8be0982835bb3aded:a7063fec573c5bd051f05ace7c2e1748ff393f638b8a683601098c353e518984607666ca6a667d2a7419487365bc1b0d29b0b249d27eaa00f1dd4a39d1c260dc",
+      "full_name": "Karim Ouda",
+      "company_role": "Direction Commerciale & Déploiement B2B",
+      "active": true,
+      "created_at": "2026-11-19T11:06:23.046Z",
+      "updated_at": "2026-11-21T09:35:59.498Z"
+    },
+    {
+      "id": "vnd_owner",
+      "email": "oudakarim.lunacerame@gmail.com",
+      "password_hash": "2526180ae9398c28f8f836c9374a31db:ba1a0b9fbc148b59b4e071a4df0897f8c2d3cfc28039b08505ddb66b8e32cab96de74e275792481abfef6b24c892f6b97b2eb23c927f7acca4dfecb678fae527",
+      "full_name": "Ouda Karim",
+      "company_role": "Fondateur · Éditeur FRET MANAGER",
+      "active": true,
+      "created_at": "2026-11-19T11:06:23.319Z",
+      "updated_at": "2026-11-21T09:35:59.828Z"
+    }
+  ],
+  "vendor_settings": {
+    "company_name": "FRET MANAGER B2B",
+    "legal_form": "SARL",
+    "activity": "Édition logicielle & Solutions Transport / Logistique",
+    "ice": "00000000000",
+    "if_number": "000000000",
+    "rc": "00000",
+    "patente": "",
+    "bank": "awb",
+    "rib": "0000000000000000000",
+    "address": "AV AHFIR RESIDENCE NOUHA ETAGE 3 N°25",
+    "city": "TANGER",
+    "phone": "0666627161",
+    "email": "oudakarim16@gmail.com",
+    "website": "",
+    "logo_url": "",
+    "quote_prefix": "DEV-B2B",
+    "invoice_prefix": "FAC-B2B",
+    "default_tax_rate": 20,
+    "payment_terms": "Validité du devis : 30 jours. Règlement par virement bancaire à la commande.",
+    "updated_at": "2026-11-21T09:35:58.851Z"
+  },
+  "vendor_billing_docs": [
+    {
+      "id": "vdoc_aa675cf5-25f",
+      "doc_type": "devis",
+      "doc_number": "DEV-B2B-2026-0001",
+      "workspace_id": "ws_8e4d6c52-96e",
+      "request_id": "req_d2e84a21-4c5",
+      "source_quote_id": null,
+      "client_name": "STE B2B TRANS",
+      "client_contact": "KARIM OUDA",
+      "client_ice": "",
+      "client_phone": "+212666627161",
+      "client_email": "safir.oudakarim@gmail.com",
+      "client_address": "",
+      "currency": "MAD",
+      "issue_date": "2026-11-19",
+      "due_date": "2026-12-19",
+      "status": "envoye",
+      "tax_rate": 20,
+      "items": [
+        {
+          "unit_price": 1500,
+          "details": "Configuration espace dédié, import flotte (2 véhicules) et formation",
+          "id": "vbi_1795086785516_1",
+          "total_ht": 1500,
+          "description": "Déploiement & paramétrage initial — Pack Essentiel PME",
+          "quantity": 1
+        },
+        {
+          "details": "Jusqu'à 9 véhicules · 15 comptes",
+          "unit_price": 6000,
+          "total_ht": 6000,
+          "quantity": 1,
+          "id": "vbi_1795086785516_2",
+          "description": "Licence annuelle SaaS FRET MANAGER — Pack Essentiel PME"
+        }
+      ],
+      "subtotal_ht": 7500,
+      "tax_amount": 1500,
+      "total_ttc": 9000,
+      "notes": "Demande d’activation / évolution depuis l’espace FRET-4845 (STE B2B TRANS).",
+      "created_at": "2026-11-19T11:13:32.040Z",
+      "updated_at": "2026-11-21T10:39:36.214Z"
+    }
+  ],
+  "b2b_packs": [
+    {
+      "id": "pack_entreprise",
+      "name": "Pack Entreprise Multi-Sites",
+      "audience": "Groupes logistiques et transitaires à fort volume (flotte illimitée)",
+      "setup_fee_mad": 8000,
+      "annual_fee_mad": 15000,
+      "setup_fee_eur": 800,
+      "annual_fee_eur": 1500,
+      "max_vehicles": 999,
+      "max_users": 999,
+      "gps_enabled": true,
+      "is_featured": false,
+      "customized": true,
+      "logistics_benefit": "Pilotage multi-dépôts illimité, intégration boîtiers GPS sur-mesure, migration historique et exports comptables.",
+      "deliverables": [
+        "Véhicules, utilisateurs et missions illimités",
+        "Raccordement sur-mesure prestataires GPS & exports comptables personnalisés",
+        "Accompagnement dédié à la migration des données historiques",
+        "Formation multi-équipes & contrat de maintenance annuel inclus"
+      ]
+    },
+    {
+      "id": "pack_essentiel",
+      "name": "Pack Essentiel PME",
+      "audience": "Transporteurs de 1 à 8 véhicules souhaitant structurer missions et facturation",
+      "setup_fee_mad": 1500,
+      "annual_fee_mad": 6000,
+      "setup_fee_eur": 100,
+      "annual_fee_eur": 600,
+      "max_vehicles": 9,
+      "max_users": 15,
+      "gps_enabled": true,
+      "is_featured": false,
+      "customized": true,
+      "logistics_benefit": "Structuration des ordres de mission, bons de livraison POD, suivi entretien & facturation TVA MAD/EUR.",
+      "deliverables": [
+        "Déploiement dédié avec votre code entreprise & logo",
+        "Import initial de votre parc véhicules, conducteurs et clients (ICE)",
+        "Paramétrage numérotation factures (modèle standard & en-tête)",
+        "Formation à distance 2h pour direction, logistique et conducteurs"
+      ]
+    },
+    {
+      "id": "pack_flotte_gps",
+      "name": "Pack Flotte & GPS",
+      "audience": "Flottes actives de 9 à 30 camions avec suivi temps réel et paie intégrée",
+      "setup_fee_mad": 3000,
+      "annual_fee_mad": 10500,
+      "setup_fee_eur": 300,
+      "annual_fee_eur": 1050,
+      "max_vehicles": 30,
+      "max_users": 35,
+      "gps_enabled": true,
+      "is_featured": true,
+      "customized": true,
+      "logistics_benefit": "Suivi GPS temps réel des camions, alertes de zone, contrôle carburant/péages et paie chauffeurs ventilée par trajet.",
+      "deliverables": [
+        "Tout le Pack Essentiel + module Suivi GPS & zones géographiques",
+        "Configuration des boîtiers GPS et alertes d’entrée/sortie de zone",
+        "Paramétrage paie conducteurs & ventilation rentabilité MAD / EUR",
+        "Formation complète sur site ou visio (4h) + support prioritaire WhatsApp/Tél"
+      ]
+    }
+  ],
+  "deleted_workspace_ids": [
+    "ws_atlantique",
+    "ws_maghreb_nord",
+    "ws_nord_exp",
+    "ws_maroc_cargo",
+    "ws_euromed",
+    "ws_sahara_trial",
+    "ws_e241f420-9cf",
+    "ws_c0a7115b-269"
+  ],
+  "deleted_request_ids": [
+    "req_souss",
+    "req_casa",
+    "req_tanger",
+    "req_dc29fb7e-90c"
+  ],
+  "deleted_billing_doc_ids": [
+    "vdoc_ab9b7830-d7e",
+    "vdoc_dd6be824-f76"
+  ],
+  "updated_at": "2026-11-21T10:40:16.360Z",
+  "boot_seeded": false
+}

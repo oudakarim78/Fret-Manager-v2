@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#17324d" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="FretManager" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <title>FRET MANAGER — Gestion des Transports, Flotte & Facturation</title>
+    <script>
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        if (
+          params.get('portal') === 'vendor' ||
+          window.location.pathname === '/vendor' ||
+          window.location.pathname.indexOf('/vendor/') === 0
+        ) {
+          if (params.get('portal') === 'vendor') {
+            params.delete('portal');
+            var qs = params.toString();
+            window.history.replaceState(
+              null,
+              '',
+              '/vendor' + (qs ? '?' + qs : '') + window.location.hash,
+            );
+          }
+          document.title = 'FRET MANAGER — Gestion Compte Client Abonnés';
+          var setAttr = function (sel, attr, val) {
+            var el = document.querySelector(sel);
+            if (el) el.setAttribute(attr, val);
+          };
+          setAttr('meta[name="theme-color"]', 'content', '#0f2438');
+          setAttr('meta[name="apple-mobile-web-app-title"]', 'content', 'FretÉditeur');
+          setAttr('link[rel="apple-touch-icon"]', 'href', '/vendor-apple-touch-icon.png');
+          setAttr('link[rel="icon"]', 'href', '/vendor-icon.svg');
+          var applyManifest = function () {
+            var m = document.querySelector('link[rel="manifest"]');
+            if (m && m.getAttribute('href') !== '/vendor.webmanifest') {
+              m.setAttribute('href', '/vendor.webmanifest');
+              return true;
+            }
+            return Boolean(m);
+          };
+          if (!applyManifest() && typeof MutationObserver !== 'undefined') {
+            var obs = new MutationObserver(function () {
+              if (applyManifest()) obs.disconnect();
+            });
+            obs.observe(document.head, { childList: true });
+          }
+        } else if (window.location.pathname === '/') {
+          window.history.replaceState(
+            null,
+            '',
+            '/erp' + window.location.search + window.location.hash,
+          );
+        }
+      })();
+    </script>
+    <meta
+      name="description"
+      content="Application opérationnelle de gestion des transports, missions, flotte, paie, facturation et suivi GPS."
+    />
+    <meta property="og:title" content="FRET MANAGER — Gestion des transports et du parc" />
+    <meta
+      property="og:description"
+      content="Application opérationnelle de gestion des transports, missions, flotte, paie, facturation et suivi GPS."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

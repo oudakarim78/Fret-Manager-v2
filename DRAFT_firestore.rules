@@ -1,0 +1,515 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 1. Global Safety Net (Default-Deny)
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // 2. Hardened Global Primitives
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerified() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isOwner(uid) {
+      return isVerified() && request.auth.uid == uid;
+    }
+
+    function isAdmin() {
+      return isVerified() && (
+        (request.auth.token.email is string &&
+          request.auth.token.email.lower() == 'oudakarim.lunacerame@gmail.com') ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+
+    // 3. Entity Validation Blueprints
+    function isValidUserPublic(data) {
+      return data.keys().hasAll(['uid', 'displayName', 'role', 'createdAt', 'updatedAt']) &&
+        data.keys().hasOnly(['uid', 'displayName', 'role', 'createdAt', 'updatedAt']) &&
+        data.uid is string && data.uid.size() >= 1 && data.uid.size() <= 128 &&
+        data.displayName is string && data.displayName.size() <= 120 &&
+        data.role in ['owner', 'admin'] &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidUserPrivate(data) {
+      return data.keys().hasAll(['email', 'updatedAt']) &&
+        data.keys().hasOnly(['email', 'updatedAt']) &&
+        data.email is string && data.email.size() <= 160 &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidWorkspace(data, wsId) {
+      return data.keys().hasAll([
+          'id', 'ownerUid', 'code', 'name', 'pack', 'licenseStatus',
+          'validUntil', 'currency', 'setupFee', 'annualFee',
+          'maxVehicles', 'maxUsers', 'gpsEnabled', 'notes',
+          'companySettings', 'invoiceSettings', 'createdAt', 'updatedAt'
+        ]) &&
+        data.keys().hasOnly([
+          'id', 'ownerUid', 'code', 'name', 'pack', 'licenseStatus',
+          'validUntil', 'currency', 'setupFee', 'annualFee',
+          'maxVehicles', 'maxUsers', 'gpsEnabled', 'notes',
+          'companySettings', 'invoiceSettings', 'createdAt', 'updatedAt'
+        ]) &&
+        data.id == wsId && isValidId(data.id) &&
+        data.ownerUid is string && data.ownerUid.size() >= 1 && data.ownerUid.size() <= 128 &&
+        data.code is string && data.code.size() >= 1 && data.code.size() <= 32 &&
+        data.name is string && data.name.size() >= 1 && data.name.size() <= 160 &&
+        data.pack is string && data.pack.size() >= 1 && data.pack.size() <= 64 &&
+        data.licenseStatus in ['essai_gratuit', 'en_attente_activation', 'actif', 'suspendu'] &&
+        data.validUntil is string && data.validUntil.size() >= 1 && data.validUntil.size() <= 32 &&
+        data.currency in ['MAD', 'EUR'] &&
+        data.setupFee is number && data.setupFee >= 0 &&
+        data.annualFee is number && data.annualFee >= 0 &&
+        data.maxVehicles is number && data.maxVehicles >= 1 &&
+        data.maxUsers is number && data.maxUsers >= 1 &&
+        data.gpsEnabled is bool &&
+        data.notes is string && data.notes.size() <= 2000 &&
+        data.companySettings is map && data.companySettings.keys().size() <= 30 &&
+        data.invoiceSettings is map && data.invoiceSettings.keys().size() <= 10 &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidWorkspaceRecord(data, wsId, recId) {
+      return data.keys().hasAll(['id', 'workspaceId', 'ownerUid', 'recordType', 'payload', 'createdAt', 'updatedAt']) &&
+        data.keys().hasOnly(['id', 'workspaceId', 'ownerUid', 'recordType', 'payload', 'createdAt', 'updatedAt']) &&
+        data.id == recId && isValidId(data.id) &&
+        data.workspaceId == wsId && isValidId(data.workspaceId) &&
+        data.ownerUid is string && data.ownerUid.size() >= 1 && data.ownerUid.size() <= 128 &&
+        data.recordType in [
+          'user', 'vehicle', 'driver', 'client', 'country', 'city',
+          'trip', 'expense', 'maintenance', 'document', 'employee',
+          'payroll', 'payroll_allocation', 'client_proposal',
+          'invoice', 'invoice_payment', 'gps_device', 'gps_position',
+          'gps_alert', 'gps_trip_summary', 'gps_geofence', 'gps_device_event',
+          'audit_log', 'checklist'
+        ] &&
+        data.payload is map && data.payload.keys().size() <= 60 &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidB2BPack(data, packId) {
+      return data.keys().hasAll([
+          'id', 'ownerUid', 'name', 'audience',
+          'setupFeeMad', 'annualFeeMad', 'setupFeeEur', 'annualFeeEur',
+          'maxVehicles', 'maxUsers', 'gpsEnabled', 'isFeatured',
+          'customized', 'logisticsBenefit', 'deliverables', 'createdAt', 'updatedAt'
+        ]) &&
+        data.keys().hasOnly([
+          'id', 'ownerUid', 'name', 'audience',
+          'setupFeeMad', 'annualFeeMad', 'setupFeeEur', 'annualFeeEur',
+          'maxVehicles', 'maxUsers', 'gpsEnabled', 'isFeatured',
+          'customized', 'logisticsBenefit', 'deliverables', 'createdAt', 'updatedAt'
+        ]) &&
+        data.id == packId && isValidId(data.id) &&
+        data.ownerUid is string && data.ownerUid.size() >= 1 && data.ownerUid.size() <= 128 &&
+        data.name is string && data.name.size() >= 1 && data.name.size() <= 160 &&
+        data.audience is string && data.audience.size() <= 400 &&
+        data.setupFeeMad is number && data.setupFeeMad >= 0 &&
+        data.annualFeeMad is number && data.annualFeeMad >= 0 &&
+        data.setupFeeEur is number && data.setupFeeEur >= 0 &&
+        data.annualFeeEur is number && data.annualFeeEur >= 0 &&
+        data.maxVehicles is number && data.maxVehicles >= 1 &&
+        data.maxUsers is number && data.maxUsers >= 1 &&
+        data.gpsEnabled is bool &&
+        data.isFeatured is bool &&
+        data.customized is bool &&
+        data.logisticsBenefit is string && data.logisticsBenefit.size() <= 600 &&
+        data.deliverables is list && data.deliverables.size() <= 20 &&
+        (data.deliverables.size() == 0 || data.deliverables[0] is string) &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidB2BRequest(data, reqId) {
+      return data.keys().hasAll([
+          'id', 'ownerUid', 'companyName', 'contactName', 'phone', 'email',
+          'fleetSize', 'pack', 'currency', 'notes', 'status',
+          'provisionedWorkspaceCode', 'createdAt', 'updatedAt'
+        ]) &&
+        data.keys().hasOnly([
+          'id', 'ownerUid', 'companyName', 'contactName', 'phone', 'email',
+          'fleetSize', 'pack', 'currency', 'notes', 'status',
+          'provisionedWorkspaceCode', 'createdAt', 'updatedAt'
+        ]) &&
+        data.id == reqId && isValidId(data.id) &&
+        data.ownerUid is string && data.ownerUid.size() >= 1 && data.ownerUid.size() <= 128 &&
+        data.companyName is string && data.companyName.size() >= 1 && data.companyName.size() <= 160 &&
+        data.contactName is string && data.contactName.size() >= 1 && data.contactName.size() <= 120 &&
+        data.phone is string && data.phone.size() >= 1 && data.phone.size() <= 40 &&
+        data.email is string && data.email.size() >= 1 && data.email.size() <= 160 &&
+        data.fleetSize is number && data.fleetSize >= 1 &&
+        data.pack is string && data.pack.size() >= 1 && data.pack.size() <= 64 &&
+        data.currency in ['MAD', 'EUR'] &&
+        data.notes is string && data.notes.size() <= 1000 &&
+        data.status in ['nouvelle', 'contactee', 'en_deploiement', 'convertie', 'archivee'] &&
+        data.provisionedWorkspaceCode is string && data.provisionedWorkspaceCode.size() <= 32 &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidVendorSettings(data, docId) {
+      return data.keys().hasAll([
+          'id', 'ownerUid', 'companyName', 'legalForm', 'activity', 'ice', 'ifNumber',
+          'rc', 'patente', 'bank', 'rib', 'address', 'city', 'phone', 'email', 'website',
+          'logoUrl', 'quotePrefix', 'invoicePrefix', 'defaultTaxRate', 'paymentTerms',
+          'createdAt', 'updatedAt'
+        ]) &&
+        data.keys().hasOnly([
+          'id', 'ownerUid', 'companyName', 'legalForm', 'activity', 'ice', 'ifNumber',
+          'rc', 'patente', 'bank', 'rib', 'address', 'city', 'phone', 'email', 'website',
+          'logoUrl', 'quotePrefix', 'invoicePrefix', 'defaultTaxRate', 'paymentTerms',
+          'createdAt', 'updatedAt'
+        ]) &&
+        data.id == docId && isValidId(data.id) &&
+        data.ownerUid is string && data.ownerUid.size() >= 1 && data.ownerUid.size() <= 128 &&
+        data.companyName is string && data.companyName.size() >= 1 && data.companyName.size() <= 160 &&
+        data.legalForm is string && data.legalForm.size() <= 80 &&
+        data.activity is string && data.activity.size() <= 200 &&
+        data.ice is string && data.ice.size() <= 60 &&
+        data.ifNumber is string && data.ifNumber.size() <= 60 &&
+        data.rc is string && data.rc.size() <= 60 &&
+        data.patente is string && data.patente.size() <= 60 &&
+        data.bank is string && data.bank.size() <= 120 &&
+        data.rib is string && data.rib.size() <= 80 &&
+        data.address is string && data.address.size() <= 300 &&
+        data.city is string && data.city.size() <= 100 &&
+        data.phone is string && data.phone.size() <= 40 &&
+        data.email is string && data.email.size() <= 160 &&
+        data.website is string && data.website.size() <= 200 &&
+        data.logoUrl is string && data.logoUrl.size() <= 250000 &&
+        data.quotePrefix is string && data.quotePrefix.size() >= 1 && data.quotePrefix.size() <= 32 &&
+        data.invoicePrefix is string && data.invoicePrefix.size() >= 1 && data.invoicePrefix.size() <= 32 &&
+        data.defaultTaxRate is number && data.defaultTaxRate >= 0 && data.defaultTaxRate <= 100 &&
+        data.paymentTerms is string && data.paymentTerms.size() <= 1000 &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidVendorBillingDoc(data, docId) {
+      return data.keys().hasAll([
+          'id', 'ownerUid', 'docType', 'docNumber', 'workspaceId', 'requestId', 'sourceQuoteId',
+          'clientName', 'clientContact', 'clientIce', 'clientPhone', 'clientEmail', 'clientAddress',
+          'currency', 'issueDate', 'dueDate', 'status', 'taxRate', 'items',
+          'subtotalHt', 'taxAmount', 'totalTtc', 'notes', 'createdAt', 'updatedAt'
+        ]) &&
+        data.keys().hasOnly([
+          'id', 'ownerUid', 'docType', 'docNumber', 'workspaceId', 'requestId', 'sourceQuoteId',
+          'clientName', 'clientContact', 'clientIce', 'clientPhone', 'clientEmail', 'clientAddress',
+          'currency', 'issueDate', 'dueDate', 'status', 'taxRate', 'items',
+          'subtotalHt', 'taxAmount', 'totalTtc', 'notes', 'createdAt', 'updatedAt'
+        ]) &&
+        data.id == docId && isValidId(data.id) &&
+        data.ownerUid is string && data.ownerUid.size() >= 1 && data.ownerUid.size() <= 128 &&
+        data.docType in ['devis', 'facture'] &&
+        data.docNumber is string && data.docNumber.size() >= 1 && data.docNumber.size() <= 64 &&
+        data.workspaceId is string && data.workspaceId.size() <= 128 &&
+        data.requestId is string && data.requestId.size() <= 128 &&
+        data.sourceQuoteId is string && data.sourceQuoteId.size() <= 128 &&
+        data.clientName is string && data.clientName.size() >= 1 && data.clientName.size() <= 160 &&
+        data.clientContact is string && data.clientContact.size() <= 120 &&
+        data.clientIce is string && data.clientIce.size() <= 60 &&
+        data.clientPhone is string && data.clientPhone.size() <= 40 &&
+        data.clientEmail is string && data.clientEmail.size() <= 160 &&
+        data.clientAddress is string && data.clientAddress.size() <= 300 &&
+        data.currency in ['MAD', 'EUR'] &&
+        data.issueDate is string && data.issueDate.size() <= 32 &&
+        data.dueDate is string && data.dueDate.size() <= 32 &&
+        data.status in ['brouillon', 'envoye', 'paye', 'annule'] &&
+        data.taxRate is number && data.taxRate >= 0 && data.taxRate <= 100 &&
+        data.items is list && data.items.size() <= 50 &&
+        (data.items.size() == 0 || data.items[0] is map) &&
+        data.subtotalHt is number && data.subtotalHt >= 0 &&
+        data.taxAmount is number && data.taxAmount >= 0 &&
+        data.totalTtc is number && data.totalTtc >= 0 &&
+        data.notes is string && data.notes.size() <= 2000 &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidVendorAccountRecord(data, accountId) {
+      return data.keys().hasAll([
+          'id', 'ownerUid', 'email', 'passwordHash', 'fullName', 'companyRole', 'active', 'createdAt', 'updatedAt'
+        ]) &&
+        data.keys().hasOnly([
+          'id', 'ownerUid', 'email', 'passwordHash', 'fullName', 'companyRole', 'active', 'createdAt', 'updatedAt'
+        ]) &&
+        data.id == accountId && isValidId(data.id) &&
+        data.ownerUid is string && data.ownerUid.size() >= 1 && data.ownerUid.size() <= 128 &&
+        data.email is string && data.email.size() >= 3 && data.email.size() <= 160 &&
+        data.passwordHash is string && data.passwordHash.size() >= 10 && data.passwordHash.size() <= 512 &&
+        data.fullName is string && data.fullName.size() >= 1 && data.fullName.size() <= 120 &&
+        data.companyRole is string && data.companyRole.size() <= 160 &&
+        data.active is bool &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    // 4. Connection Validation Document
+    match /test/{docId} {
+      allow get: if isSignedIn() && isValidId(docId);
+    }
+
+    // 5. Admins Bootstrap Collection
+    match /admins/{adminUid} {
+      allow get: if isValidId(adminUid) && (isOwner(adminUid) || isAdmin());
+    }
+
+    // 6. Users & Split Private PII Collection
+    match /users/{userId} {
+      allow get: if isValidId(userId) && (isOwner(userId) || isAdmin());
+      allow create: if isValidId(userId) &&
+        isVerified() &&
+        isValidUserPublic(incoming()) &&
+        incoming().uid == request.auth.uid &&
+        incoming().createdAt == request.time &&
+        incoming().updatedAt == request.time &&
+        isOwner(userId) && (incoming().role == 'owner' || isAdmin());
+      allow update: if isValidId(userId) &&
+        isVerified() &&
+        isValidUserPublic(incoming()) &&
+        incoming().uid == existing().uid &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time &&
+        (
+          (isAdmin() && incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'role', 'updatedAt'])) ||
+          (isOwner(userId) &&
+            incoming().role == existing().role &&
+            incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'updatedAt']))
+        );
+
+      match /private/{docId} {
+        allow get: if isValidId(userId) && isValidId(docId) && (isOwner(userId) || isAdmin());
+        allow create, update: if isValidId(userId) && isValidId(docId) &&
+          isVerified() &&
+          isValidUserPrivate(incoming()) &&
+          incoming().updatedAt == request.time &&
+          (isOwner(userId) || isAdmin());
+      }
+    }
+
+    // 7. Workspaces & Master-Gated Operational Subcollection
+    match /workspaces/{workspaceId} {
+      allow get: if isValidId(workspaceId) && isVerified() &&
+        (existing().ownerUid == request.auth.uid || isAdmin());
+      allow list: if isVerified() &&
+        (resource.data.ownerUid == request.auth.uid || isAdmin());
+      allow create: if isValidId(workspaceId) &&
+        isVerified() &&
+        isValidWorkspace(incoming(), workspaceId) &&
+        (incoming().ownerUid == request.auth.uid || isAdmin()) &&
+        incoming().createdAt == request.time &&
+        incoming().updatedAt == request.time;
+      allow update: if isValidId(workspaceId) &&
+        isVerified() &&
+        isValidWorkspace(incoming(), workspaceId) &&
+        incoming().id == existing().id &&
+        incoming().ownerUid == existing().ownerUid &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time &&
+        (
+          (isAdmin() && incoming().diff(existing()).affectedKeys().hasOnly([
+            'code', 'name', 'pack', 'licenseStatus', 'validUntil', 'currency',
+            'setupFee', 'annualFee', 'maxVehicles', 'maxUsers', 'gpsEnabled',
+            'notes', 'companySettings', 'invoiceSettings', 'updatedAt'
+          ])) ||
+          (existing().ownerUid == request.auth.uid &&
+            incoming().diff(existing()).affectedKeys().hasOnly([
+              'code', 'name', 'pack', 'licenseStatus', 'validUntil', 'currency',
+              'setupFee', 'annualFee', 'maxVehicles', 'maxUsers', 'gpsEnabled',
+              'notes', 'companySettings', 'invoiceSettings', 'updatedAt'
+            ]))
+        );
+      allow delete: if isValidId(workspaceId) && isVerified() &&
+        (existing().ownerUid == request.auth.uid || isAdmin());
+
+      match /records/{recordId} {
+        allow get: if isValidId(workspaceId) && isValidId(recordId) && isVerified() &&
+          exists(/databases/$(database)/documents/workspaces/$(workspaceId)) &&
+          (get(/databases/$(database)/documents/workspaces/$(workspaceId)).data.ownerUid == request.auth.uid || isAdmin());
+        allow list: if isVerified() &&
+          (resource.data.ownerUid == request.auth.uid || isAdmin());
+        allow create: if isValidId(workspaceId) && isValidId(recordId) &&
+          isVerified() &&
+          isValidWorkspaceRecord(incoming(), workspaceId, recordId) &&
+          (incoming().ownerUid == request.auth.uid || isAdmin()) &&
+          incoming().createdAt == request.time &&
+          incoming().updatedAt == request.time &&
+          exists(/databases/$(database)/documents/workspaces/$(workspaceId)) &&
+          (get(/databases/$(database)/documents/workspaces/$(workspaceId)).data.ownerUid == request.auth.uid || isAdmin());
+        allow update: if isValidId(workspaceId) && isValidId(recordId) &&
+          isVerified() &&
+          isValidWorkspaceRecord(incoming(), workspaceId, recordId) &&
+          incoming().id == existing().id &&
+          incoming().workspaceId == existing().workspaceId &&
+          incoming().ownerUid == existing().ownerUid &&
+          incoming().recordType == existing().recordType &&
+          incoming().createdAt == existing().createdAt &&
+          incoming().updatedAt == request.time &&
+          exists(/databases/$(database)/documents/workspaces/$(workspaceId)) &&
+          (get(/databases/$(database)/documents/workspaces/$(workspaceId)).data.ownerUid == request.auth.uid || isAdmin()) &&
+          (
+            (isAdmin() && incoming().diff(existing()).affectedKeys().hasOnly(['payload', 'updatedAt'])) ||
+            (existing().ownerUid == request.auth.uid &&
+              incoming().diff(existing()).affectedKeys().hasOnly(['payload', 'updatedAt']))
+          );
+        allow delete: if isValidId(workspaceId) && isValidId(recordId) && isVerified() &&
+          exists(/databases/$(database)/documents/workspaces/$(workspaceId)) &&
+          (get(/databases/$(database)/documents/workspaces/$(workspaceId)).data.ownerUid == request.auth.uid || isAdmin());
+      }
+    }
+
+    // 8. B2B Offers Catalog (Admin-managed, Verified Read)
+    match /b2b_packs/{packId} {
+      allow get: if isValidId(packId) && isVerified();
+      allow list: if isVerified() &&
+        (resource.data.ownerUid == request.auth.uid || isAdmin());
+      allow create: if isValidId(packId) &&
+        isAdmin() &&
+        isValidB2BPack(incoming(), packId) &&
+        incoming().ownerUid == request.auth.uid &&
+        incoming().createdAt == request.time &&
+        incoming().updatedAt == request.time;
+      allow update: if isValidId(packId) &&
+        isAdmin() &&
+        isValidB2BPack(incoming(), packId) &&
+        incoming().id == existing().id &&
+        incoming().ownerUid == existing().ownerUid &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time &&
+        incoming().diff(existing()).affectedKeys().hasOnly([
+          'name', 'audience', 'setupFeeMad', 'annualFeeMad', 'setupFeeEur',
+          'annualFeeEur', 'maxVehicles', 'maxUsers', 'gpsEnabled', 'isFeatured',
+          'customized', 'logisticsBenefit', 'deliverables', 'updatedAt'
+        ]);
+      allow delete: if isValidId(packId) && isAdmin();
+    }
+
+    // 9. B2B Deployment / Subscription Requests
+    match /b2b_requests/{requestId} {
+      allow get: if isValidId(requestId) && isVerified() &&
+        (existing().ownerUid == request.auth.uid || isAdmin());
+      allow list: if isVerified() &&
+        (resource.data.ownerUid == request.auth.uid || isAdmin());
+      allow create: if isValidId(requestId) &&
+        isVerified() &&
+        isValidB2BRequest(incoming(), requestId) &&
+        (incoming().ownerUid == request.auth.uid || isAdmin()) &&
+        (incoming().status == 'nouvelle' || isAdmin()) &&
+        incoming().createdAt == request.time &&
+        incoming().updatedAt == request.time;
+      allow update: if isValidId(requestId) &&
+        isVerified() &&
+        isValidB2BRequest(incoming(), requestId) &&
+        incoming().id == existing().id &&
+        incoming().ownerUid == existing().ownerUid &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time &&
+        (
+          (isAdmin() && incoming().diff(existing()).affectedKeys().hasOnly([
+            'status', 'provisionedWorkspaceCode', 'notes', 'pack', 'currency', 'fleetSize', 'updatedAt'
+          ])) ||
+          (existing().ownerUid == request.auth.uid &&
+            existing().status != 'convertie' &&
+            incoming().diff(existing()).affectedKeys().hasOnly(['notes', 'pack', 'currency', 'fleetSize', 'updatedAt']))
+        );
+      allow delete: if isValidId(requestId) && isVerified() &&
+        (existing().ownerUid == request.auth.uid || isAdmin());
+    }
+
+    // 10. Vendor Portal Settings (Admin-only)
+    match /vendor_portal/{docId} {
+      allow get: if isValidId(docId) && isAdmin();
+      allow create: if isValidId(docId) &&
+        isAdmin() &&
+        isValidVendorSettings(incoming(), docId) &&
+        incoming().ownerUid == request.auth.uid &&
+        incoming().createdAt == request.time &&
+        incoming().updatedAt == request.time;
+      allow update: if isValidId(docId) &&
+        isAdmin() &&
+        isValidVendorSettings(incoming(), docId) &&
+        incoming().id == existing().id &&
+        incoming().ownerUid == existing().ownerUid &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time &&
+        incoming().diff(existing()).affectedKeys().hasOnly([
+          'companyName', 'legalForm', 'activity', 'ice', 'ifNumber', 'rc', 'patente',
+          'bank', 'rib', 'address', 'city', 'phone', 'email', 'website', 'logoUrl',
+          'quotePrefix', 'invoicePrefix', 'defaultTaxRate', 'paymentTerms', 'updatedAt'
+        ]);
+      allow delete: if isValidId(docId) && isAdmin();
+    }
+
+    // 11. Vendor B2B Quotes & Invoices (Admin-only)
+    match /vendor_billing_docs/{docId} {
+      allow get: if isValidId(docId) && isAdmin();
+      allow list: if isVerified() && isAdmin() && resource.data.ownerUid == request.auth.uid;
+      allow create: if isValidId(docId) &&
+        isAdmin() &&
+        isValidVendorBillingDoc(incoming(), docId) &&
+        incoming().ownerUid == request.auth.uid &&
+        incoming().createdAt == request.time &&
+        incoming().updatedAt == request.time;
+      allow update: if isValidId(docId) &&
+        isAdmin() &&
+        isValidVendorBillingDoc(incoming(), docId) &&
+        incoming().id == existing().id &&
+        incoming().ownerUid == existing().ownerUid &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time &&
+        incoming().diff(existing()).affectedKeys().hasOnly([
+          'docType', 'docNumber', 'workspaceId', 'requestId', 'sourceQuoteId',
+          'clientName', 'clientContact', 'clientIce', 'clientPhone', 'clientEmail',
+          'clientAddress', 'currency', 'issueDate', 'dueDate', 'status', 'taxRate',
+          'items', 'subtotalHt', 'taxAmount', 'totalTtc', 'notes', 'updatedAt'
+        ]);
+      allow delete: if isValidId(docId) && isAdmin();
+    }
+
+    // 12. Vendor Accounts Backup (Admin-only, fixed IDs)
+    match /vendor_accounts/{accountId} {
+      allow get: if isValidId(accountId) && isAdmin();
+      allow create: if isValidId(accountId) &&
+        isAdmin() &&
+        isValidVendorAccountRecord(incoming(), accountId) &&
+        incoming().ownerUid == request.auth.uid &&
+        incoming().createdAt == request.time &&
+        incoming().updatedAt == request.time;
+      allow update: if isValidId(accountId) &&
+        isAdmin() &&
+        isValidVendorAccountRecord(incoming(), accountId) &&
+        incoming().id == existing().id &&
+        incoming().ownerUid == existing().ownerUid &&
+        incoming().email == existing().email &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time &&
+        incoming().diff(existing()).affectedKeys().hasOnly([
+          'passwordHash', 'fullName', 'companyRole', 'active', 'updatedAt'
+        ]);
+      allow delete: if isValidId(accountId) && isAdmin();
+    }
+  }
+}

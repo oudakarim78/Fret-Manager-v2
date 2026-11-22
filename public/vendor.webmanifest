@@ -1,0 +1,33 @@
+{
+  "id": "/vendor",
+  "lang": "fr",
+  "name": "FRET MANAGER — Gestion Compte Client Abonnés",
+  "short_name": "FretÉditeur",
+  "description": "Portail éditeur indépendant : gestion des comptes clients abonnés, essais gratuits 14 jours, packs B2B et rentabilité SaaS.",
+  "start_url": "/vendor",
+  "scope": "/vendor",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#0f2438",
+  "background_color": "#0f2438",
+  "icons": [
+    {
+      "src": "/vendor-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/vendor-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/vendor-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

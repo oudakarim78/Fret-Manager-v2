@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <rect width="512" height="512" rx="112" fill="#0f2438" />
+  <rect x="24" y="24" width="464" height="464" rx="92" stroke="#2367a5" stroke-width="10" stroke-opacity="0.7" />
+  <!-- Shield frame -->
+  <path
+    d="M256 96L388 148V252C388 334 331 398 256 424C181 398 124 334 124 252V148L256 96Z"
+    fill="#17324d"
+    stroke="#38bdf8"
+    stroke-width="16"
+    stroke-linejoin="round"
+  />
+  <!-- SaaS KPI bars inside shield -->
+  <rect x="184" y="266" width="32" height="66" rx="8" fill="#38bdf8" />
+  <rect x="240" y="226" width="32" height="106" rx="8" fill="#ffffff" />
+  <rect x="296" y="186" width="32" height="146" rx="8" fill="#10b981" />
+  <!-- Top checkmark / control badge -->
+  <circle cx="364" cy="144" r="44" fill="#10b981" stroke="#0f2438" stroke-width="12" />
+  <path d="M346 145L359 158L384 131" stroke="#ffffff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
